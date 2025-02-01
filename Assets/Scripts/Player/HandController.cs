@@ -8,7 +8,7 @@ namespace Player
         [Header("Spark")]
         [SerializeField] private GameObject _spark;
         [SerializeField] private float _sparkSpeed = 5f;
-        [SerializeField, Range(0.001f, 1f)] private float _sparkInertia = 1f;
+        [SerializeField, Range(1f, 100f)] private float _sparkInertia = 20f;
         [Header("Hand")]
         [SerializeField] private SpriteRenderer _handSprite;
         [SerializeField] private Sprite _handOpenSprite;
@@ -20,7 +20,7 @@ namespace Player
 
         private void Awake()
         {
-            _handSparkLine = _handSprite.GetComponent<LineRenderer>();
+            _handSparkLine = _spark.GetComponent<LineRenderer>();
         }
 
         private void Update()
@@ -33,7 +33,6 @@ namespace Player
         public void Move(InputAction.CallbackContext ctx)
         {
             Vector2 input = ctx.ReadValue<Vector2>();
-            print(input.ToString("0.000"));
             _targetDirection = input;
         }
 
@@ -55,7 +54,7 @@ namespace Player
         {
             if (_currentDirection != _targetDirection)
             {
-                _currentDirection = Vector2.MoveTowards(_currentDirection, _targetDirection, 1 / _sparkInertia);
+                _currentDirection = Vector2.MoveTowards(_currentDirection, _targetDirection, 1f / _sparkInertia);
             }
         }
 
