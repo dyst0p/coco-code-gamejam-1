@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 84e513e7e27b4ab448726192bd4b2e2a
+guid: 0ef1035f6a6834f47be8cb8c303cef19
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3777569201786988421
-    second: hand_closed_0
+      213: -2776048200396253612
+    second: line-trace_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 32
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hand_closed_0
+      name: line-trace_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 25
-        width: 87
-        height: 79
+        x: 0
+        y: 0
+        width: 8
+        height: 2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b78d70d43d0639bc0800000000000000
-      internalID: -3777569201786988421
+      spriteID: 456d400bede7979d0800000000000000
+      internalID: -2776048200396253612
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hand_closed_0: -3777569201786988421
+      line-trace_0: -2776048200396253612
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
