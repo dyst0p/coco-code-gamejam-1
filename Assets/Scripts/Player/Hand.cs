@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Props;
 using Services;
 using UnityEngine;
 
@@ -16,8 +17,7 @@ namespace Player
         private readonly List<Transform> _propsInContact = new();
         private SpriteRenderer _handRenderer;
         private Rigidbody2D _handRigidbody;
-        private Rigidbody2D _caughtPropRigidbody;
-        private FixedJoint2D _caughtPropFixedJoint;
+        private Prop _caughtProp;
 
         private void Awake()
         {
@@ -102,29 +102,20 @@ namespace Player
             {
                 return;
             }
-            _caughtPropRigidbody = closestProp.GetComponent<Rigidbody2D>();
-            _caughtPropFixedJoint = closestProp.GetComponent<FixedJoint2D>();
-            _caughtPropFixedJoint.connectedBody = _handRigidbody;
-            _caughtPropFixedJoint.enabled = true;
+            _caughtProp = closestProp.GetComponent<Prop>();
+            _caughtProp.Fix(_handRigidbody);
 
             _handRenderer.sortingOrder = 1;
         }
 
         private void ReleaseCaughtProp()
         {
-            if (_caughtPropRigidbody == null)
+            if (_caughtProp == null)
             {
                 return;
             }
-            _caughtPropFixedJoint.enabled = false;
-            // add velocity
-            _caughtPropRigidbody.linearVelocity *= _throwAcceleration;
-            _caughtPropRigidbody.AddTorque(_caughtPropRigidbody.linearVelocity.magnitude * _throwTorqueMoment *
-                                           Mathf.Sign(transform.position.x -
-                                                      _caughtPropRigidbody.transform.position.x));
-            
-            _caughtPropRigidbody = null;
-            _caughtPropFixedJoint = null;
+            _caughtProp.Release(Vector2.one * _throwAcceleration, _throwTorqueMoment);
+            _caughtProp = null;
             
             _handRenderer.sortingOrder = -1;
         }
