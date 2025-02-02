@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Microsoft.Win32.SafeHandles;
-using Unity.VisualScripting;
+using Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +7,7 @@ namespace Player
 {
     public class Hand : MonoBehaviour
     {
+        [SerializeField] private Side _side;
         [SerializeField] private Sprite _handOpenSprite;
         [SerializeField] private Sprite _handClosedSprite;
 
@@ -26,6 +25,31 @@ namespace Player
             _handRenderer = GetComponent<SpriteRenderer>();
             _handRigidbody = GetComponent<Rigidbody2D>();
         }
+        
+        private void OnEnable()
+        {
+            if (_side == Side.Left)
+            {
+                InputProvider.OnCatchLeft += Take;
+            }
+            else
+            {
+                InputProvider.OnCatchRight += Take;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_side == Side.Left)
+            {
+                InputProvider.OnCatchLeft -= Take;
+            }
+            else
+            {
+                InputProvider.OnCatchRight -= Take;
+            }
+        }
+
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -37,14 +61,13 @@ namespace Player
             _propsInContact.Remove(other.transform.parent);
         }
 
-        public void Take(InputAction.CallbackContext ctx)
+        public void Take(bool mode)
         {
-            if (ctx.phase == InputActionPhase.Performed)
+            if (mode)
             {
                 CloseHand();
             }
-
-            if (ctx.phase == InputActionPhase.Canceled)
+            else
             {
                 OpenHand();
             }
@@ -84,6 +107,8 @@ namespace Player
             _caughtPropFixedJoint = closestProp.GetComponent<FixedJoint2D>();
             _caughtPropFixedJoint.connectedBody = _handRigidbody;
             _caughtPropFixedJoint.enabled = true;
+
+            _handRenderer.sortingOrder = 1;
             print($"{closestProp?.gameObject.name} caught");
         }
 
@@ -94,7 +119,7 @@ namespace Player
                 return;
             }
             _caughtPropFixedJoint.enabled = false;
-            // add velosity
+            // add velocity
             _caughtPropRigidbody.linearVelocity *= _throwAcceleration;
             _caughtPropRigidbody.AddTorque(_caughtPropRigidbody.linearVelocity.magnitude * _throwTorqueMoment *
                                            Mathf.Sign(transform.position.x -
@@ -102,6 +127,8 @@ namespace Player
             print($"{_caughtPropRigidbody.gameObject.name} released");
             _caughtPropRigidbody = null;
             _caughtPropFixedJoint = null;
+            
+            _handRenderer.sortingOrder = -1;
         }
     }
 }

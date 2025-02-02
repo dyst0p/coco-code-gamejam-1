@@ -1,11 +1,12 @@
+using Services;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player
 {
     public class Spark : MonoBehaviour
     {
         [Header("Spark")]
+        [SerializeField] private Side _side;
         [SerializeField] private float _sparkSpeed = 5f;
         [SerializeField, Range(1f, 100f)] private float _sparkInertia = 20f;
 
@@ -20,6 +21,30 @@ namespace Player
             _handTransform = transform.parent.GetComponentInChildren<Hand>().transform;
         }
 
+        private void OnEnable()
+        {
+            if (_side == Side.Left)
+            {
+                InputProvider.OnMoveLeft += Move;
+            }
+            else
+            {
+                InputProvider.OnMoveRight += Move;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_side == Side.Left)
+            {
+                InputProvider.OnMoveLeft -= Move;
+            }
+            else
+            {
+                InputProvider.OnMoveRight -= Move;
+            }
+        }
+
         private void Update()
         {
             CalculateDirection();
@@ -27,9 +52,8 @@ namespace Player
             DrawLine();
         }
 
-        public void Move(InputAction.CallbackContext ctx)
+        public void Move(Vector2 input)
         {
-            Vector2 input = ctx.ReadValue<Vector2>();
             _targetDirection = input;
         }
         
