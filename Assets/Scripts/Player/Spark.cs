@@ -1,3 +1,4 @@
+using System;
 using Services;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Player
         [SerializeField] private Side _side;
         [SerializeField] private float _sparkSpeed = 5f;
         [SerializeField, Range(1f, 100f)] private float _sparkInertia = 20f;
+        [SerializeField] private float _maxDistance = 5f;
 
         private Vector2 _targetDirection;
         private Vector2 _currentDirection;
@@ -52,6 +54,12 @@ namespace Player
             DrawLine();
         }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = _side == Side.Left ? Color.cyan : Color.magenta;
+            Gizmos.DrawWireSphere(transform.parent.position, _maxDistance);
+        }
+
         public void Move(Vector2 input)
         {
             _targetDirection = input;
@@ -68,6 +76,11 @@ namespace Player
         private void MoveSpark()
         {
             transform.Translate(_currentDirection * (_sparkSpeed * Time.deltaTime));
+            Vector2 offsetFromStart = transform.position - transform.parent.position;
+            if (offsetFromStart.magnitude > _maxDistance)
+            {
+                transform.position = (Vector2)transform.parent.position + offsetFromStart.normalized * _maxDistance;
+            }
         }
 
         private void DrawLine()
