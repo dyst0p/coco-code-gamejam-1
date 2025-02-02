@@ -23,7 +23,7 @@ namespace Services
         
         public void CatchLeftHandler(InputAction.CallbackContext ctx)
         {
-            OnCatchLeft?.Invoke(ctx.phase == InputActionPhase.Performed ? true : false);
+            OnCatchLeft?.Invoke(ctx.phase == InputActionPhase.Performed);
         }
         
         public void MoveRightHandler(InputAction.CallbackContext ctx)
@@ -33,7 +33,7 @@ namespace Services
         
         public void CatchRightHandler(InputAction.CallbackContext ctx)
         {
-            OnCatchRight?.Invoke(ctx.phase == InputActionPhase.Performed ? true : false);
+            OnCatchRight?.Invoke(ctx.phase == InputActionPhase.Performed);
         }
     }
 }

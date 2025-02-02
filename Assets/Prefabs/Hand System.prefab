@@ -52,7 +52,7 @@ MonoBehaviour:
   _side: 0
   _sparkSpeed: 10
   _sparkInertia: 20
-  _maxDistance: 3
+  _maxDistance: 5
 --- !u!50 &4552165536285363175
 Rigidbody2D:
   serializedVersion: 5

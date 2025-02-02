@@ -1,4 +1,3 @@
-using System;
 using Services;
 using UnityEngine;
 
@@ -60,7 +59,7 @@ namespace Player
             Gizmos.DrawWireSphere(transform.parent.position, _maxDistance);
         }
 
-        public void Move(Vector2 input)
+        private void Move(Vector2 input)
         {
             _targetDirection = input;
         }

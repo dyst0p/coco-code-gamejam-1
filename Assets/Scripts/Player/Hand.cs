@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Services;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -61,7 +60,7 @@ namespace Player
             _propsInContact.Remove(other.transform.parent);
         }
 
-        public void Take(bool mode)
+        private void Take(bool mode)
         {
             if (mode)
             {
@@ -109,7 +108,6 @@ namespace Player
             _caughtPropFixedJoint.enabled = true;
 
             _handRenderer.sortingOrder = 1;
-            print($"{closestProp?.gameObject.name} caught");
         }
 
         private void ReleaseCaughtProp()
@@ -124,7 +122,7 @@ namespace Player
             _caughtPropRigidbody.AddTorque(_caughtPropRigidbody.linearVelocity.magnitude * _throwTorqueMoment *
                                            Mathf.Sign(transform.position.x -
                                                       _caughtPropRigidbody.transform.position.x));
-            print($"{_caughtPropRigidbody.gameObject.name} released");
+            
             _caughtPropRigidbody = null;
             _caughtPropFixedJoint = null;
             
