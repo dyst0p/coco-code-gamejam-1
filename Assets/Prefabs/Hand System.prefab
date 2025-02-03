@@ -52,7 +52,7 @@ MonoBehaviour:
   _side: 0
   _sparkSpeed: 10
   _sparkInertia: 20
-  _maxDistance: 5
+  _maxDistance: 4
 --- !u!50 &4552165536285363175
 Rigidbody2D:
   serializedVersion: 5
@@ -5094,7 +5094,7 @@ MonoBehaviour:
   _side: 0
   _handOpenSprite: {fileID: 21300000, guid: e310832e65243584eb7c59e92c1cd007, type: 3}
   _handClosedSprite: {fileID: 21300000, guid: 84e513e7e27b4ab448726192bd4b2e2a, type: 3}
-  _throwAcceleration: 2
+  _throwAcceleration: {x: 1, y: 1}
   _throwTorqueMoment: 1
 --- !u!212 &1892885854301401423
 SpriteRenderer:
@@ -5198,7 +5198,7 @@ SpringJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
   m_DampingRatio: 1
-  m_Frequency: 2
+  m_Frequency: 4
 --- !u!58 &3810530012371708298
 CircleCollider2D:
   m_ObjectHideFlags: 0
