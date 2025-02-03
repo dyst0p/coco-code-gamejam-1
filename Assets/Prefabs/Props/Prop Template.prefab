@@ -41,11 +41,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6518888975346696622}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e79a2a652d39cf7418240b1596c84e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsGrounded>k__BackingField: 0
 --- !u!50 &4272530061276457154
 Rigidbody2D:
   serializedVersion: 5

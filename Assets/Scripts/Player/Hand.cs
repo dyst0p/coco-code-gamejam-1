@@ -11,7 +11,7 @@ namespace Player
         [SerializeField] private Sprite _handOpenSprite;
         [SerializeField] private Sprite _handClosedSprite;
 
-        [SerializeField] private float _throwAcceleration = 3f;
+        [SerializeField] private Vector2 _throwAcceleration = Vector2.one;
         [SerializeField] private float _throwTorqueMoment = 1f;
 
         private readonly List<Transform> _propsInContact = new();
@@ -114,7 +114,7 @@ namespace Player
             {
                 return;
             }
-            _caughtProp.Release(Vector2.one * _throwAcceleration, _throwTorqueMoment);
+            _caughtProp.Release(_throwAcceleration, _throwTorqueMoment);
             _caughtProp = null;
             
             _handRenderer.sortingOrder = -1;
