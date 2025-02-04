@@ -20,6 +20,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.5176471
       objectReference: {fileID: 0}
+    - target: {fileID: 2911789026523882531, guid: 6094c08a1895b2948ab3fba444499fcf, type: 3}
+      propertyPath: m_Color.b
+      value: 0.21568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911789026523882531, guid: 6094c08a1895b2948ab3fba444499fcf, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911789026523882531, guid: 6094c08a1895b2948ab3fba444499fcf, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5176471
+      objectReference: {fileID: 0}
     - target: {fileID: 5903766616758076995, guid: 6094c08a1895b2948ab3fba444499fcf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -62,7 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6518888975346696622, guid: 6094c08a1895b2948ab3fba444499fcf, type: 3}
       propertyPath: m_Name
-      value: Prop Potion Acid
+      value: Prop Potion Poison
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182241700622727285, guid: 6094c08a1895b2948ab3fba444499fcf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

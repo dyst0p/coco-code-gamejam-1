@@ -6,13 +6,13 @@ namespace Props
     public class Prop : MonoBehaviour
     {
         protected Rigidbody2D _rigidbody;
-        protected FixedJoint2D _fixedJoint;
-        protected TagHandle _groundTag;
-        protected bool _inFreeFall;
+        private FixedJoint2D _fixedJoint;
+        private TagHandle _groundTag;
+        private bool _inFreeFall;
         
         [field:SerializeField]
         public bool IsGrounded { get; protected set; }
-        public event Action<Prop> PropGrounded;
+        public event Action<Prop> PropDeactivated;
 
         protected virtual void OnEnable()
         {
@@ -27,7 +27,10 @@ namespace Props
             if (collision.gameObject.CompareTag(_groundTag) || 
                 collision.gameObject.GetComponent<Prop>()?.IsGrounded == true)
             {
-                OnGrounded();
+                if (!IsGrounded)
+                {
+                    OnDeactivated();
+                }
             }
         }
         
@@ -51,12 +54,11 @@ namespace Props
             _inFreeFall = true;
         }
 
-        protected virtual void OnGrounded()
+        protected virtual void OnDeactivated()
         {
             IsGrounded = true;
             _inFreeFall = false;
-            PropGrounded?.Invoke(this);
-            print($"{name} is grounded");
+            PropDeactivated?.Invoke(this);
         }
     }
 }

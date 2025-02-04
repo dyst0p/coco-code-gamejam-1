@@ -33,7 +33,7 @@ namespace Props
                         _spawnPoints[Random.Range(0, _spawnPoints.Length)].position,
                         Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
                     prop.transform.SetParent(transform);
-                    prop.PropGrounded += PropGroundedHandler;
+                    prop.PropDeactivated += PropDeactivatedHandler;
                     RubberCamera.Instance.AddTrackedObject(prop.transform);
                     _activeProps++;
                     yield return _delayAfterSpawn;
@@ -43,11 +43,11 @@ namespace Props
             }
         }
 
-        private void PropGroundedHandler(Prop prop)
+        private void PropDeactivatedHandler(Prop prop)
         {
             _activeProps--;
             RubberCamera.Instance.RemoveTrackedObject(prop.transform);
-            prop.PropGrounded -= PropGroundedHandler;
+            prop.PropDeactivated -= PropDeactivatedHandler;
         }
     }
 }
