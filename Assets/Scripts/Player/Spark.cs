@@ -46,7 +46,7 @@ namespace Player
             }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             CalculateDirection();
             MoveSpark();
@@ -74,7 +74,7 @@ namespace Player
 
         private void MoveSpark()
         {
-            transform.Translate(_currentDirection * (_sparkSpeed * Time.deltaTime));
+            transform.Translate(_currentDirection * (_sparkSpeed * Time.fixedDeltaTime));
             Vector2 offsetFromStart = transform.position - transform.parent.position;
             if (offsetFromStart.magnitude > _maxDistance)
             {

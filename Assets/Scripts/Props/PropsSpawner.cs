@@ -32,6 +32,7 @@ namespace Props
                     Prop prop = Instantiate(_propPrefabs[Random.Range(0, _propPrefabs.Length)],
                         _spawnPoints[Random.Range(0, _spawnPoints.Length)].position,
                         Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
+                    prop.transform.SetParent(transform);
                     prop.PropGrounded += PropGroundedHandler;
                     RubberCamera.Instance.AddTrackedObject(prop.transform);
                     _activeProps++;

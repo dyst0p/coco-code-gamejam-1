@@ -5,16 +5,16 @@ namespace Props
 {
     public class Prop : MonoBehaviour
     {
-        private Rigidbody2D _rigidbody;
-        private FixedJoint2D _fixedJoint;
-        private TagHandle _groundTag;
-        private bool _inFreeFall;
+        protected Rigidbody2D _rigidbody;
+        protected FixedJoint2D _fixedJoint;
+        protected TagHandle _groundTag;
+        protected bool _inFreeFall;
         
         [field:SerializeField]
-        public bool IsGrounded { get; private set; }
+        public bool IsGrounded { get; protected set; }
         public event Action<Prop> PropGrounded;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _rigidbody.simulated = true;
@@ -22,7 +22,7 @@ namespace Props
             _groundTag = TagHandle.GetExistingTag("Ground");
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag(_groundTag) || 
                 collision.gameObject.GetComponent<Prop>()?.IsGrounded == true)
@@ -31,14 +31,14 @@ namespace Props
             }
         }
         
-        public void Fix(Rigidbody2D parent)
+        public virtual void Fix(Rigidbody2D parent)
         {
             _fixedJoint.connectedBody = parent;
             _fixedJoint.enabled = true;
             _inFreeFall = false;
         }
 
-        public void Release(Vector2 velocityModifiers, float throwTorqueMoment = 1)
+        public virtual void Release(Vector2 velocityModifiers, float throwTorqueMoment = 1)
         {
             _fixedJoint.connectedBody = null;
             _fixedJoint.enabled = false;
@@ -51,7 +51,7 @@ namespace Props
             _inFreeFall = true;
         }
 
-        private void OnGrounded()
+        protected virtual void OnGrounded()
         {
             IsGrounded = true;
             _inFreeFall = false;
