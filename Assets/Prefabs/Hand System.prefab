@@ -52,7 +52,7 @@ MonoBehaviour:
   _side: 0
   _sparkSpeed: 10
   _sparkInertia: 20
-  _maxDistance: 3.5
+  _maxDistance: 3.4
 --- !u!50 &4552165536285363175
 Rigidbody2D:
   serializedVersion: 5
@@ -5091,11 +5091,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baec0bf23a5a4814b6443d2bdbd26afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _side: 0
+  <HandSide>k__BackingField: 0
   _handOpenSprite: {fileID: 21300000, guid: e310832e65243584eb7c59e92c1cd007, type: 3}
   _handClosedSprite: {fileID: 21300000, guid: 84e513e7e27b4ab448726192bd4b2e2a, type: 3}
   _throwAcceleration: {x: 1, y: 1}
   _throwTorqueMoment: 1
+  _hurtDuration: 0.3
 --- !u!212 &1892885854301401423
 SpriteRenderer:
   m_ObjectHideFlags: 0

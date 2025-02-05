@@ -8,7 +8,10 @@ namespace Player
     public class Face : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private SpriteRenderer _spriteRendererMouth;
+        [SerializeField] private SpriteRenderer _spriteRendererTonge;
         [SerializeField] private Color _fullPoisonedColor;
+        [SerializeField] private float _minAlpha = 0.2f;
         [SerializeField] private float _maxPoisonedFace = 10;
         [SerializeField] private Transform _mouth;
         [SerializeField] private Transform _leftPupil;
@@ -21,6 +24,7 @@ namespace Player
         [SerializeField] private float _maxMouthOpenDistance = 8f;
         private Color _startFaceColor;
         private Color _targetFaceColor;
+        private float _targetAlpha = 1f;
         private Coroutine _chewCoroutine;
 
         private void Start()
@@ -44,7 +48,7 @@ namespace Player
         
         private void ChangeFaceColorAlpha(float health)
         {
-            _targetFaceColor.a = health / PlayerData.MaxHealth;
+            _targetAlpha = _minAlpha + (health / PlayerData.MaxHealth) * (1 - _minAlpha);
         }
 
         private void Update()
@@ -73,6 +77,13 @@ namespace Player
                 pupil.localPosition = dir * _distanceToPupil;
             }
 
+            void SetAlpha(SpriteRenderer sprite)
+            {
+                Color color = sprite.color;
+                color.a = _targetAlpha;
+                sprite.color = color;
+            }
+
             if (FindClosesProp(Prop.AllProps, out Transform closestProp, out float minDistance))
             {
                 LookAtFood(_leftPupil, closestProp);
@@ -96,6 +107,9 @@ namespace Player
             }
             
             _spriteRenderer.color = Color.Lerp(_spriteRenderer.color, _targetFaceColor, Time.deltaTime);
+            SetAlpha(_spriteRenderer);
+            SetAlpha(_spriteRendererMouth);
+            SetAlpha(_spriteRendererTonge);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
