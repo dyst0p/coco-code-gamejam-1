@@ -23,7 +23,7 @@ public class Face : MonoBehaviour
         {
             closest = null;
             minDistance = float.PositiveInfinity;
-            foreach (Transform prop in EdibleProp.AllEdibleProps)
+            foreach (Transform prop in props)
             {
                 float sqrDistance = (prop.position - _mouth.position).sqrMagnitude;
                 if (sqrDistance < minDistance)
@@ -38,6 +38,7 @@ public class Face : MonoBehaviour
         
         void LookAtFood(Transform pupil, Transform closestProp)
         {
+            print("closes prop " + closestProp.name);
             Vector3 dir = (closestProp.position - pupil.parent.position).normalized;
             pupil.localPosition = dir * _distanceToPupil;
         }

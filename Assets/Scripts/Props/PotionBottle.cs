@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Props
@@ -14,9 +15,8 @@ namespace Props
         [SerializeField] private float _spilledPotionStartSpeed = 4f;
         private Vector2 _prevVelocity = Vector2.zero;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
             _potion.transform.up = Vector3.up;
         }
 

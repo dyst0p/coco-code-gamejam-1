@@ -19,7 +19,7 @@ namespace Props
         public bool IsDeactivated { get; protected set; }
         public event Action<Prop> PropDeactivated;
         
-        protected virtual void Awake()
+        protected virtual void OnEnable()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _rigidbody.simulated = true;
@@ -79,9 +79,9 @@ namespace Props
     {
         public static readonly List<Transform> AllEdibleProps = new();
 
-        protected override void Awake()
+        protected override void OnEnable()
         {
-            base.Awake();
+            base.OnEnable();
             AllEdibleProps.Add(transform);
         }
 

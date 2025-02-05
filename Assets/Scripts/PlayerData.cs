@@ -49,6 +49,7 @@ public class PlayerData : Singleton<PlayerData>
             else
             {
                 _bestScore = PlayerPrefs.GetFloat("BestScore");
+                print("Best score loated from saves: " + _bestScore);
             }
         }
         else
@@ -63,7 +64,7 @@ public class PlayerData : Singleton<PlayerData>
         if (_bestScore < Score)
         {
             _bestScore = Score;
-            PlayerPrefs.SetFloat("BestScore", 0);
+            PlayerPrefs.SetFloat("BestScore", _bestScore);
         }
     }
 
