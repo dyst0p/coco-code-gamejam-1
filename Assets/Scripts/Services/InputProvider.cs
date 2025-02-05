@@ -7,7 +7,8 @@ namespace Services
     public enum Side
     {
         Left,
-        Right
+        Right,
+        None
     }
     public class InputProvider : MonoBehaviour
     {

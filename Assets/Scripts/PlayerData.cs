@@ -4,22 +4,84 @@ using UnityEngine;
 
 public class PlayerData : Singleton<PlayerData>
 {
-    public int Score { get; private set; }
-    public float Health { get; private set; }
-    public float Poisoning { get; private set; }
+    private const float MaxHealth = 100f;
+    [SerializeField] private float _health = MaxHealth;
+    [SerializeField] private float _poisoning;
+    private static float _bestScore;
+    private bool _isGameOver;
 
-    public event Action<float> ScoreChanged;
-    public event Action<float> HealthChanged;
-    public event Action<float> PoisoningChanged;
-
-    public void AddScore(int score)
+    public float Health
     {
-        Score += score;
-        ScoreChanged?.Invoke(Score);
+        get => _health;
+        private set => _health = Mathf.Clamp(value, 0f, MaxHealth);
     }
 
-    public void AddDamage(float damage)
+    public float Poisoning
     {
-        Health -= damage;
+        get => _poisoning;
+        set => _poisoning = value < 0 ? 0 : value;
+    }
+    [field: SerializeField] public float Score { get; private set; }
+    public float BestScore => _bestScore;
+
+    public event Action<float> HealthChanged;
+    public event Action<float> PoisoningChanged;
+    public event Action<float> ScoreChanged;
+    public event Action GameOver;
+
+    private void OnDestroy()
+    {
+        if (_bestScore < Score)
+        {
+            _bestScore = Score;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Poisoning != 0 && Health > 0)
+        {
+            ChangeHealth(-Poisoning * Time.fixedDeltaTime);
+        }
+
+        if (Health <= 0 && !_isGameOver)
+        {
+            _isGameOver = true;
+            Time.timeScale = 0;
+            GameOver?.Invoke();
+        }
+    }
+    
+    public void AddScore(float score)
+    {
+        int oldScoreInt = (int) (Score * 10);
+        Score += score;
+        int newScoreInt = (int) (Score * 10);
+        if (newScoreInt != oldScoreInt)
+        {
+            ScoreChanged?.Invoke(Score);
+        }
+    }
+
+    public void ChangeHealth(float change)
+    {
+        int oldHealthInt = (int)Health;
+        Health += change;
+        int newHealthInt = (int)Health;
+        if (newHealthInt != oldHealthInt)
+        {
+            HealthChanged?.Invoke(Health);
+        }
+    }
+    
+    public void ChangePoisoning(float change)
+    {
+        int oldPoisoningInt = (int)Poisoning;
+        Poisoning += change;
+        int newPoisoningInt = (int)Poisoning;
+        if (newPoisoningInt != oldPoisoningInt)
+        {
+            PoisoningChanged?.Invoke(Poisoning);
+        }
     }
 }

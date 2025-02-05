@@ -1,4 +1,6 @@
 using System;
+using Player;
+using Services;
 using UnityEngine;
 
 namespace Props
@@ -8,10 +10,11 @@ namespace Props
         protected Rigidbody2D _rigidbody;
         private FixedJoint2D _fixedJoint;
         private TagHandle _groundTag;
-        private bool _inFreeFall;
+        private Side _lastHandSide = Side.None;
+        private float _throwTime;
         
         [field:SerializeField]
-        public bool IsGrounded { get; protected set; }
+        public bool IsDeactivated { get; protected set; }
         public event Action<Prop> PropDeactivated;
 
         protected virtual void OnEnable()
@@ -25,9 +28,9 @@ namespace Props
         protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag(_groundTag) || 
-                collision.gameObject.GetComponent<Prop>()?.IsGrounded == true)
+                collision.gameObject.GetComponent<Prop>()?.IsDeactivated == true)
             {
-                if (!IsGrounded)
+                if (!IsDeactivated)
                 {
                     OnDeactivated();
                 }
@@ -38,7 +41,14 @@ namespace Props
         {
             _fixedJoint.connectedBody = parent;
             _fixedJoint.enabled = true;
-            _inFreeFall = false;
+            var newHand = parent.GetComponent<Hand>().HandSide;
+            // not a first catch
+            if (_lastHandSide != Side.None && !IsDeactivated)
+            {
+                int modificator = _lastHandSide != newHand ? 2 : 1;
+                PlayerData.Instance.AddScore((Time.fixedTime - _throwTime) * modificator);
+            }
+            _lastHandSide = newHand;
         }
 
         public virtual void Release(Vector2 velocityModifiers, float throwTorqueMoment = 1)
@@ -51,13 +61,12 @@ namespace Props
             _rigidbody.AddTorque(_rigidbody.linearVelocity.magnitude * throwTorqueMoment *
                                  Mathf.Sign(transform.position.x - _rigidbody.transform.position.x));
             
-            _inFreeFall = true;
+            _throwTime = Time.fixedTime;
         }
 
         protected virtual void OnDeactivated()
         {
-            IsGrounded = true;
-            _inFreeFall = false;
+            IsDeactivated = true;
             PropDeactivated?.Invoke(this);
         }
     }

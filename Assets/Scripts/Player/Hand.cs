@@ -7,7 +7,7 @@ namespace Player
 {
     public class Hand : MonoBehaviour
     {
-        [SerializeField] private Side _side;
+        [field:SerializeField] public Side HandSide { get; private set; }
         [SerializeField] private Sprite _handOpenSprite;
         [SerializeField] private Sprite _handClosedSprite;
 
@@ -27,7 +27,7 @@ namespace Player
         
         private void OnEnable()
         {
-            if (_side == Side.Left)
+            if (HandSide == Side.Left)
             {
                 InputProvider.OnCatchLeft += Take;
             }
@@ -39,7 +39,7 @@ namespace Player
 
         private void OnDisable()
         {
-            if (_side == Side.Left)
+            if (HandSide == Side.Left)
             {
                 InputProvider.OnCatchLeft -= Take;
             }

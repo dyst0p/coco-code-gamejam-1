@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class RubberCamera : Singleton<RubberCamera>
 {
-    [SerializeField] private List<Transform> _trackedObjects = new List<Transform>();
+    [SerializeField] private List<Transform> _trackedObjects = new();
     [SerializeField] private float _minSize = 7.5f;
     [SerializeField] private float _frameIndent = 1f;
     [SerializeField] private float _speedOfChange = 2f;

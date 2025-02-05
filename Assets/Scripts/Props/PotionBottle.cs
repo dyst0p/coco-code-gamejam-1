@@ -30,13 +30,10 @@ namespace Props
         protected override void OnCollisionEnter2D(Collision2D collision)
         {
             Vector2 impact = _rigidbody.mass * _rigidbody.linearVelocity;
-            print("Impact: " + impact.magnitude);
             if (impact.magnitude > _ultimateImpact)
             {
                 OnDeactivated();
                 OnCracked();
-                
-                print("Cracked: " + name);
                 return;
             }
             base.OnCollisionEnter2D(collision);
