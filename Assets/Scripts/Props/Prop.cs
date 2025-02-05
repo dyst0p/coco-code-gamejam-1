@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Player;
 using Services;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace Props
 {
     public class Prop : MonoBehaviour
     {
+        public static readonly List<Transform> AllProps = new();
         protected Rigidbody2D _rigidbody;
         private FixedJoint2D _fixedJoint;
         private TagHandle _groundTag;
@@ -16,13 +18,14 @@ namespace Props
         [field:SerializeField]
         public bool IsDeactivated { get; protected set; }
         public event Action<Prop> PropDeactivated;
-
-        protected virtual void OnEnable()
+        
+        protected virtual void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _rigidbody.simulated = true;
             _fixedJoint = GetComponent<FixedJoint2D>();
             _groundTag = TagHandle.GetExistingTag("Ground");
+            AllProps.Add(transform);
         }
 
         protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -67,7 +70,31 @@ namespace Props
         protected virtual void OnDeactivated()
         {
             IsDeactivated = true;
+            AllProps.Remove(transform);
             PropDeactivated?.Invoke(this);
+        }
+    }
+
+    public abstract class EdibleProp : Prop
+    {
+        public static readonly List<Transform> AllEdibleProps = new();
+
+        protected override void Awake()
+        {
+            base.Awake();
+            AllEdibleProps.Add(transform);
+        }
+
+        protected override void OnDeactivated()
+        {
+            base.OnDeactivated();
+            AllEdibleProps.Remove(transform);
+        }
+
+        public virtual void Eat()
+        {
+            OnDeactivated();
+            Destroy(gameObject);
         }
     }
 }

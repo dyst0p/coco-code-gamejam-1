@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4272530061276457154, guid: 233b31ff888787249b990e2512e1560c, type: 3}
       propertyPath: m_Mass
-      value: 0.46780694
+      value: 0.4678071
       objectReference: {fileID: 0}
     - target: {fileID: 5903766616758076995, guid: 233b31ff888787249b990e2512e1560c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56,19 +56,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop Mushroom
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3331269228640231084, guid: 233b31ff888787249b990e2512e1560c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5903766616758076995, guid: 233b31ff888787249b990e2512e1560c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2778557832253539136}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6518888975346696622, guid: 233b31ff888787249b990e2512e1560c, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4357785974733487533}
   m_SourcePrefab: {fileID: 100100000, guid: 233b31ff888787249b990e2512e1560c, type: 3}
 --- !u!4 &4905442893523004515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5903766616758076995, guid: 233b31ff888787249b990e2512e1560c, type: 3}
   m_PrefabInstance: {fileID: 1584640515025660448}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5731526358229314446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6518888975346696622, guid: 233b31ff888787249b990e2512e1560c, type: 3}
+  m_PrefabInstance: {fileID: 1584640515025660448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4357785974733487533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731526358229314446}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 068e3f4831884d6f9a9759a8c2bb2e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsDeactivated>k__BackingField: 0
+  _antidoteAmount: 3
 --- !u!1001 &3445696391163055786
 PrefabInstance:
   m_ObjectHideFlags: 0

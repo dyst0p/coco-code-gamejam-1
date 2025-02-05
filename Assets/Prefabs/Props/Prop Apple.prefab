@@ -118,14 +118,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop Apple
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3331269228640231084, guid: 233b31ff888787249b990e2512e1560c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5903766616758076995, guid: 233b31ff888787249b990e2512e1560c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8571853716730801225}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6518888975346696622, guid: 233b31ff888787249b990e2512e1560c, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 6762338796904086937}
   m_SourcePrefab: {fileID: 100100000, guid: 233b31ff888787249b990e2512e1560c, type: 3}
+--- !u!1 &204674801353835176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6518888975346696622, guid: 233b31ff888787249b990e2512e1560c, type: 3}
+  m_PrefabInstance: {fileID: 6386271782666191622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6762338796904086937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204674801353835176}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590bc5be976a4d578eb2879ef3e7546e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsDeactivated>k__BackingField: 0
+  _healAmount: 10
 --- !u!4 &670750664330544453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5903766616758076995, guid: 233b31ff888787249b990e2512e1560c, type: 3}
