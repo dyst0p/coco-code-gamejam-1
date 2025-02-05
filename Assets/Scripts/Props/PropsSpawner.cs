@@ -11,7 +11,7 @@ namespace Props
         [SerializeField] private Prop[] _propPrefabs;
         [SerializeField] private float _delayBeforeSpawn = 1f;
         [SerializeField] private float _fallingDelayOnSpawn = 1f;
-        private int _activeProps = 0;
+        private int _activeProps;
         private WaitForSeconds _spawnDelay;
         private WaitForSeconds _delayAfterSpawn;
 

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Props
@@ -9,9 +8,10 @@ namespace Props
         [SerializeField] private Rigidbody2D _crackedBottleBot;
         [SerializeField] private Rigidbody2D _crackedBottleTop;
         [SerializeField] private Rigidbody2D _spilledPotion;
-        [SerializeField, Range(1f, 100f)] private float _potionLiquidity = 10f;
-        [SerializeField, Range(0f, 1f)] private float _potionInertia = 0.4f;
-        [SerializeField] private float _ultimateImpact = 1f;
+        [SerializeField, Range(1f, 100f)] private float _potionLiquidity = 25f;
+        [SerializeField, Range(0f, 1f)] private float _potionInertia = 0.1f;
+        [SerializeField] private float _ultimateImpact = 20f;
+        [SerializeField] private float _spilledPotionStartSpeed = 4f;
         private Vector2 _prevVelocity = Vector2.zero;
 
         protected void Awake()
@@ -29,8 +29,6 @@ namespace Props
 
         protected override void OnCollisionEnter2D(Collision2D collision)
         {
-            // Vector2 impact = _rigidbody.mass * _rigidbody.linearVelocity -
-            //                  collision.otherRigidbody.mass * _rigidbody.linearVelocity;
             Vector2 impact = _rigidbody.mass * _rigidbody.linearVelocity;
             print("Impact: " + impact.magnitude);
             if (impact.magnitude > _ultimateImpact)
@@ -47,9 +45,9 @@ namespace Props
         private void OnCracked()
         {
             Vector2 forceUp = (_rigidbody.linearVelocity.normalized + (Vector2)transform.up) *
-                          _rigidbody.linearVelocity.magnitude;
+                          _rigidbody.linearVelocity.magnitude / 2;
             Vector2 forceDown = (_rigidbody.linearVelocity.normalized - (Vector2)transform.up) *
-                              _rigidbody.linearVelocity.magnitude;
+                              _rigidbody.linearVelocity.magnitude / 2;
             
             _crackedBottleBot.transform.parent = transform.parent;
             _crackedBottleTop.transform.parent = transform.parent;
@@ -63,7 +61,7 @@ namespace Props
             _crackedBottleTop.AddForce(forceUp, ForceMode2D.Impulse);
             _spilledPotion.gameObject.SetActive(true);
             _spilledPotion.transform.up = Vector2.up;
-            _spilledPotion.AddForce(Vector2.down * 4, ForceMode2D.Impulse);
+            _spilledPotion.linearVelocity = -Vector2.up * _spilledPotionStartSpeed;
         }
 
         protected override void OnDeactivated()

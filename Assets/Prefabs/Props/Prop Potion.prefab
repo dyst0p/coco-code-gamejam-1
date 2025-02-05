@@ -57,7 +57,8 @@ MonoBehaviour:
   _spilledPotion: {fileID: 2779778213547324727}
   _potionLiquidity: 25
   _potionInertia: 0.1
-  _ultimateImpact: 10
+  _ultimateImpact: 20
+  _spilledPotionStartSpeed: 4
 --- !u!50 &4272530061276457154
 Rigidbody2D:
   serializedVersion: 5

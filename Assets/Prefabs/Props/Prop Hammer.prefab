@@ -72,7 +72,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4272530061276457154, guid: 233b31ff888787249b990e2512e1560c, type: 3}
       propertyPath: m_Mass
-      value: 1.9151747
+      value: 1.915175
       objectReference: {fileID: 0}
     - target: {fileID: 5903766616758076995, guid: 233b31ff888787249b990e2512e1560c, type: 3}
       propertyPath: m_LocalPosition.x
