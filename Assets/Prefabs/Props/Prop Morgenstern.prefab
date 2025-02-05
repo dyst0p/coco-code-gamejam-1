@@ -56,19 +56,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop Morgenstern
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3331269228640231084, guid: 233b31ff888787249b990e2512e1560c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5903766616758076995, guid: 233b31ff888787249b990e2512e1560c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4620893127653082495}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6518888975346696622, guid: 233b31ff888787249b990e2512e1560c, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4149873371042429111}
   m_SourcePrefab: {fileID: 100100000, guid: 233b31ff888787249b990e2512e1560c, type: 3}
 --- !u!4 &4874100978168622140 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5903766616758076995, guid: 233b31ff888787249b990e2512e1560c, type: 3}
   m_PrefabInstance: {fileID: 1317915828602219135}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5205478968151714769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6518888975346696622, guid: 233b31ff888787249b990e2512e1560c, type: 3}
+  m_PrefabInstance: {fileID: 1317915828602219135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4149873371042429111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5205478968151714769}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034de2c0ea834798a316eb6eb4787d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsDeactivated>k__BackingField: 0
+  _damage: 1
+  _delayInSeconds: 1
 --- !u!1001 &1944348259540760343
 PrefabInstance:
   m_ObjectHideFlags: 0

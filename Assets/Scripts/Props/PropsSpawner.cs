@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using Services;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Props
 {
@@ -17,11 +19,23 @@ namespace Props
 
         private void Start()
         {
+            PlayerData.Instance.ScoreChanged += Rebalance;
             _spawnDelay = new WaitForSeconds(_delayBeforeSpawn);
             _delayAfterSpawn = new WaitForSeconds(_fallingDelayOnSpawn);
             StartCoroutine(SpawnProps());
         }
-        
+
+        private void OnDisable()
+        {
+            PlayerData.Instance.ScoreChanged -= Rebalance;
+        }
+
+        private void Rebalance(float score)
+        {
+            _propsToSpawn = (int)(score / 30) + 1;
+                
+        }
+
         private IEnumerator SpawnProps()
         {
             while (true)

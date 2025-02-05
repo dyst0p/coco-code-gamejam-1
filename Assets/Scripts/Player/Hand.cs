@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Props;
 using Services;
@@ -13,15 +14,18 @@ namespace Player
 
         [SerializeField] private Vector2 _throwAcceleration = Vector2.one;
         [SerializeField] private float _throwTorqueMoment = 1f;
+        [SerializeField] private float _hurtDuration = 0.3f;
 
         private readonly List<Transform> _propsInContact = new();
         private SpriteRenderer _handRenderer;
+        private Color _baseColor;
         private Rigidbody2D _handRigidbody;
         private Prop _caughtProp;
 
         private void Awake()
         {
             _handRenderer = GetComponent<SpriteRenderer>();
+            _baseColor = _handRenderer.color;
             _handRigidbody = GetComponent<Rigidbody2D>();
         }
         
@@ -58,6 +62,22 @@ namespace Player
         private void OnTriggerExit2D(Collider2D other)
         {
             _propsInContact.Remove(other.transform.parent);
+        }
+
+        public void HurtAnimate()
+        {
+            IEnumerator ColorAnimate(float duration)
+            {
+                float timeElapsed = 0;
+                while (timeElapsed < duration)
+                {
+                    timeElapsed += Time.deltaTime;
+                    _handRenderer.color = Color.Lerp(Color.red, _baseColor, timeElapsed / duration);
+                    yield return null;
+                }
+            }
+
+            StartCoroutine(ColorAnimate(_hurtDuration));
         }
 
         private void Take(bool mode)
