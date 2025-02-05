@@ -1,91 +1,124 @@
 using System.Collections;
-using System.Collections;
 using System.Collections.Generic;
 using Props;
 using UnityEngine;
 
-public class Face : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private Transform _mouth;
-    [SerializeField] private Transform _leftPupil;
-    [SerializeField] private Transform _rightPupil;
-    [SerializeField] private float _distanceToPupil = 0.2f;
-    [SerializeField] private Vector3 _closeScale;
-    [SerializeField] private Vector3 _chewScale;
-    [SerializeField] private float _chewDuration = 2f;
-    [SerializeField] private float _minMouthOpenDistance = 3f;
-    [SerializeField] private float _maxMouthOpenDistance = 8f;
-    private Coroutine _chewCoroutine;
-
-    private void Update()
+    public class Face : MonoBehaviour
     {
-        bool FindClosesProp(List<Transform> props, out Transform closest, out float minDistance)
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Color _fullPoisonedColor;
+        [SerializeField] private float _maxPoisonedFace = 10;
+        [SerializeField] private Transform _mouth;
+        [SerializeField] private Transform _leftPupil;
+        [SerializeField] private Transform _rightPupil;
+        [SerializeField] private float _distanceToPupil = 0.2f;
+        [SerializeField] private Vector3 _closeScale;
+        [SerializeField] private Vector3 _chewScale;
+        [SerializeField] private float _chewDuration = 2f;
+        [SerializeField] private float _minMouthOpenDistance = 3f;
+        [SerializeField] private float _maxMouthOpenDistance = 8f;
+        private Color _startFaceColor;
+        private Color _targetFaceColor;
+        private Coroutine _chewCoroutine;
+
+        private void Start()
         {
-            closest = null;
-            minDistance = float.PositiveInfinity;
-            foreach (Transform prop in props)
-            {
-                float sqrDistance = (prop.position - _mouth.position).sqrMagnitude;
-                if (sqrDistance < minDistance)
-                {
-                    closest = prop;
-                    minDistance = sqrDistance;
-                }
-            }
-            minDistance = Mathf.Sqrt(minDistance);
-            return closest != null;
+            PlayerData.Instance.PoisoningChanged += ChangeFaceColor;
+            PlayerData.Instance.HealthChanged += ChangeFaceColorAlpha;
+            _targetFaceColor = _startFaceColor = _spriteRenderer.color;
+        }
+
+        private void OnDisable()
+        {
+            PlayerData.Instance.PoisoningChanged -= ChangeFaceColor;
+            PlayerData.Instance.HealthChanged -= ChangeFaceColorAlpha;
+        }
+
+        private void ChangeFaceColor(float poison)
+        {
+            _targetFaceColor =
+                Color.Lerp(_startFaceColor, _fullPoisonedColor, Mathf.Clamp01(poison / _maxPoisonedFace));
         }
         
-        void LookAtFood(Transform pupil, Transform closestProp)
+        private void ChangeFaceColorAlpha(float health)
         {
-            print("closes prop " + closestProp.name);
-            Vector3 dir = (closestProp.position - pupil.parent.position).normalized;
-            pupil.localPosition = dir * _distanceToPupil;
+            _targetFaceColor.a = health / PlayerData.MaxHealth;
         }
 
-        if (FindClosesProp(Prop.AllProps, out Transform closestProp, out float minDistance))
+        private void Update()
         {
-            LookAtFood(_leftPupil, closestProp);
-            LookAtFood(_rightPupil, closestProp);
-        }
-        else
-        {
-            _leftPupil.localPosition = Vector3.zero;
-            _rightPupil.localPosition = Vector3.zero;
+            bool FindClosesProp(List<Transform> props, out Transform closest, out float minDistance)
+            {
+                closest = null;
+                minDistance = float.PositiveInfinity;
+                foreach (Transform prop in props)
+                {
+                    float sqrDistance = (prop.position - _mouth.position).sqrMagnitude;
+                    if (sqrDistance < minDistance)
+                    {
+                        closest = prop;
+                        minDistance = sqrDistance;
+                    }
+                }
+                minDistance = Mathf.Sqrt(minDistance);
+                return closest != null;
+            }
+        
+            void LookAtFood(Transform pupil, Transform closestProp)
+            {
+                print("closes prop " + closestProp.name);
+                Vector3 dir = (closestProp.position - pupil.parent.position).normalized;
+                pupil.localPosition = dir * _distanceToPupil;
+            }
+
+            if (FindClosesProp(Prop.AllProps, out Transform closestProp, out float minDistance))
+            {
+                LookAtFood(_leftPupil, closestProp);
+                LookAtFood(_rightPupil, closestProp);
+            }
+            else
+            {
+                _leftPupil.localPosition = Vector3.zero;
+                _rightPupil.localPosition = Vector3.zero;
+            }
+
+            if (FindClosesProp(EdibleProp.AllEdibleProps, out Transform closestEdible, out float minDistanceToEdible) && _chewCoroutine == null)
+            {
+                float t = Mathf.Clamp01((minDistanceToEdible - _minMouthOpenDistance) /
+                                        (_maxMouthOpenDistance - _minMouthOpenDistance));
+                _mouth.localScale = Vector3.Lerp(Vector3.one, _closeScale, t);
+            }
+            else
+            {
+                _mouth.localScale = _closeScale;
+            }
+            
+            _spriteRenderer.color = Color.Lerp(_spriteRenderer.color, _targetFaceColor, Time.deltaTime);
         }
 
-        if (FindClosesProp(EdibleProp.AllEdibleProps, out Transform closestEdible, out float minDistanceToEdible) && _chewCoroutine == null)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            float t = Mathf.Clamp01((minDistanceToEdible - _minMouthOpenDistance) /
-                                    (_maxMouthOpenDistance - _minMouthOpenDistance));
-            _mouth.localScale = Vector3.Lerp(Vector3.one, _closeScale, t);
+            var edible = other.GetComponentInParent<EdibleProp>();
+            if (edible != null && !edible.IsDeactivated && _chewCoroutine == null)
+            {
+                edible.Eat();
+                _chewCoroutine = StartCoroutine(Chew());
+            }
         }
-        else
-        {
-            _mouth.localScale = _closeScale;
-        }
-    }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        var edible = other.GetComponentInParent<EdibleProp>();
-        if (edible != null && !edible.IsDeactivated && _chewCoroutine == null)
+        private IEnumerator Chew()
         {
-            edible.Eat();
-            _chewCoroutine = StartCoroutine(Chew());
+            float timeElapsed = 0f;
+            while (timeElapsed < _chewDuration)
+            {
+                timeElapsed += Time.deltaTime;
+                float t = Mathf.Abs(Mathf.Sin(2 * Mathf.PI * (timeElapsed / _chewDuration)));
+                _mouth.localScale = Vector3.Lerp(_closeScale, _chewScale, t);
+                yield return null;
+            }
+            _chewCoroutine = null;
         }
-    }
-
-    private IEnumerator Chew()
-    {
-        float timeElapsed = 0f;
-        while (timeElapsed < _chewDuration)
-        {
-            timeElapsed += Time.deltaTime;
-            float t = Mathf.Abs(Mathf.Sin(2 * Mathf.PI * (timeElapsed / _chewDuration)));
-            _mouth.localScale = Vector3.Lerp(_closeScale, _chewScale, t);
-            yield return null;
-        }
-        _chewCoroutine = null;
     }
 }

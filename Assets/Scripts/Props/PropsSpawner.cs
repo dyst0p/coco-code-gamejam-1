@@ -13,6 +13,7 @@ namespace Props
         [SerializeField] private Prop[] _propPrefabs;
         [SerializeField] private float _delayBeforeSpawn = 1f;
         [SerializeField] private float _fallingDelayOnSpawn = 1f;
+        [SerializeField] private GameObject _dustCloudPrefab;
         private int _activeProps;
         private WaitForSeconds _spawnDelay;
         private WaitForSeconds _delayAfterSpawn;
@@ -48,6 +49,7 @@ namespace Props
                         Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
                     prop.transform.SetParent(transform);
                     prop.PropDeactivated += PropDeactivatedHandler;
+                    Instantiate(_dustCloudPrefab, prop.transform.position, Quaternion.identity);
                     RubberCamera.Instance.AddTrackedObject(prop.transform);
                     _activeProps++;
                     yield return _delayAfterSpawn;

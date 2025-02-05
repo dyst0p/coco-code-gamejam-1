@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerData : Singleton<PlayerData>
 {
-    private const float MaxHealth = 100f;
+    public const float MaxHealth = 100f;
     private const int SaveVersion = 1;
     [SerializeField] private float _health = MaxHealth;
     [SerializeField] private float _poisoning;
     private static float _bestScore;
     private bool _isGameOver;
-
+    
     public float Health
     {
         get => _health;
