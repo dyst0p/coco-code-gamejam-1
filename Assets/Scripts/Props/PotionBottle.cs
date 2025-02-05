@@ -14,8 +14,9 @@ namespace Props
         [SerializeField] private float _spilledPotionStartSpeed = 4f;
         private Vector2 _prevVelocity = Vector2.zero;
 
-        protected void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _potion.transform.up = Vector3.up;
         }
 

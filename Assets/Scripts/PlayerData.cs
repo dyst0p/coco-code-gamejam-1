@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerData : Singleton<PlayerData>
 {
     private const float MaxHealth = 100f;
+    private const int SaveVersion = 1;
     [SerializeField] private float _health = MaxHealth;
     [SerializeField] private float _poisoning;
     private static float _bestScore;
@@ -29,11 +30,40 @@ public class PlayerData : Singleton<PlayerData>
     public event Action<float> ScoreChanged;
     public event Action GameOver;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        void ClearSaves()
+        {
+            PlayerPrefs.SetInt("SaveVersion", SaveVersion);
+            PlayerPrefs.SetFloat("BestScore", 0);
+        }
+        
+        if (PlayerPrefs.HasKey("SaveVersion"))
+        {
+            int saveVersion = PlayerPrefs.GetInt("SaveVersion");
+            if (saveVersion != SaveVersion)
+            {
+                ClearSaves();
+            }
+            else
+            {
+                _bestScore = PlayerPrefs.GetFloat("BestScore");
+            }
+        }
+        else
+        {
+            ClearSaves();
+        }
+        
+    }
+
     private void OnDestroy()
     {
         if (_bestScore < Score)
         {
             _bestScore = Score;
+            PlayerPrefs.SetFloat("BestScore", 0);
         }
     }
 
