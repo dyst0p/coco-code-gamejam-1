@@ -125,7 +125,7 @@ namespace Player
             _caughtProp = closestProp.GetComponent<Prop>();
             _caughtProp.Fix(_handRigidbody);
 
-            _handRenderer.sortingOrder = 1;
+            _handRenderer.sortingOrder = 10;
         }
 
         private void ReleaseCaughtProp()
@@ -137,7 +137,7 @@ namespace Player
             _caughtProp.Release(_throwAcceleration, _throwTorqueMoment);
             _caughtProp = null;
             
-            _handRenderer.sortingOrder = -1;
+            _handRenderer.sortingOrder = -10;
         }
     }
 }

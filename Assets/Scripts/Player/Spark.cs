@@ -13,12 +13,10 @@ namespace Player
 
         private Vector2 _targetDirection;
         private Vector2 _currentDirection;
-        private LineRenderer _handSparkLine;
         private Transform _handTransform;
 
         private void Awake()
         {
-            _handSparkLine = GetComponent<LineRenderer>();
             _handTransform = transform.parent.GetComponentInChildren<Hand>().transform;
         }
 
@@ -50,7 +48,6 @@ namespace Player
         {
             CalculateDirection();
             MoveSpark();
-            DrawLine();
         }
 
         private void Move(Vector2 input)
@@ -74,12 +71,6 @@ namespace Player
             {
                 transform.position = (Vector2)transform.parent.position + offsetFromStart.normalized * _maxDistance;
             }
-        }
-
-        private void DrawLine()
-        {
-            _handSparkLine.SetPosition(0, _handTransform.position);
-            _handSparkLine.SetPosition(1, transform.position);
         }
     }
 }

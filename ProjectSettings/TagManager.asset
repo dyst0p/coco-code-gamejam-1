@@ -42,5 +42,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3612661579
+    locked: 0
+  - name: Player
+    uniqueID: 3655165793
+    locked: 0
+  - name: Props
+    uniqueID: 3550688935
+    locked: 0
+  - name: VFX
+    uniqueID: 4139029265
+    locked: 0
   m_RenderingLayers:
   - Default
