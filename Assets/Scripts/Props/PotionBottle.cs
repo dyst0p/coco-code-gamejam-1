@@ -31,6 +31,7 @@ namespace Props
         protected override void OnCollisionEnter2D(Collision2D collision)
         {
             Vector2 impact = _rigidbody.mass * _rigidbody.linearVelocity;
+            impact *= Mathf.Cos(Vector2.Angle(_rigidbody.linearVelocity, collision.contacts[0].normal) * Mathf.Deg2Rad);
             if (impact.magnitude > _ultimateImpact)
             {
                 OnDeactivated();
@@ -46,6 +47,7 @@ namespace Props
                           _rigidbody.linearVelocity.magnitude / 2;
             Vector2 forceDown = (_rigidbody.linearVelocity.normalized - (Vector2)transform.up) *
                               _rigidbody.linearVelocity.magnitude / 2;
+            Vector2 potionSpeed = Vector2.down * _spilledPotionStartSpeed;
             
             _crackedBottleBot.transform.parent = transform.parent;
             _crackedBottleTop.transform.parent = transform.parent;
@@ -59,7 +61,7 @@ namespace Props
             _crackedBottleTop.AddForce(forceUp, ForceMode2D.Impulse);
             _spilledPotion.gameObject.SetActive(true);
             _spilledPotion.transform.up = Vector2.up;
-            _spilledPotion.linearVelocity = -Vector2.up * _spilledPotionStartSpeed;
+            _spilledPotion.linearVelocity = potionSpeed;
         }
 
         protected override void OnDeactivated()

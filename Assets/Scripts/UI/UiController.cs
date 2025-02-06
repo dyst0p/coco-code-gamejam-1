@@ -1,53 +1,91 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class UiController : MonoBehaviour
+    public class UiController : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private TMP_Text _statsText;
-        [SerializeField] private TMP_Text _bestScoreText;
+        [SerializeField] private Image _poisonBar;
+        [SerializeField] private Image _hpBar;
+        [SerializeField] private Image _scoreBar;
+        [SerializeField] private Image _bestScoreBar;
+        [SerializeField] private float _poisoningScale = 2f;
         [SerializeField] private GameObject _gameOverPanel;
         [SerializeField] private TMP_Text _gameOverText;
         [SerializeField] private Button _playAgainButton;
+        private float _barHeight;
+        private float _poisonHeight;
+        private float _heightOfHpUnit;
         
-        private string HealthString => ((int)PlayerData.Instance.Health).ToString();
-        private string PoisoningString => ((int)PlayerData.Instance.Poisoning).ToString();
+        private PlayerInput _playerInput;
+        
         private string ScoreString => ((int)(PlayerData.Instance.Score * 10)).ToString();
         private string BestScoreString => ((int)(PlayerData.Instance.BestScore * 10)).ToString();
 
         private void Start()
         {
-            PlayerData.Instance.HealthChanged += UpdateStats;
-            PlayerData.Instance.PoisoningChanged += UpdateStats;
-            PlayerData.Instance.ScoreChanged += UpdateStats;
+            _playerInput = PlayerData.Instance.GetComponent<PlayerInput>();
+            PlayerData.Instance.HealthChanged += UpdateHp;
+            PlayerData.Instance.PoisoningChanged += UpdatePoisoning;
+            PlayerData.Instance.ScoreChanged += UpdateScore;
             PlayerData.Instance.GameOver += OnGameOver;
+            _playerInput.actions["Navigate"].performed += ReturnFocus;
+            
             _playAgainButton.onClick.AddListener(RestartGame);
-
-            if (PlayerData.Instance.BestScore > 0)
-            {
-                _bestScoreText.text = $"<color=\"yellow\">BEST SCORE\n{BestScoreString}";
-            }
+            
+            _barHeight = _poisonBar.gameObject.transform.parent.GetComponent<RectTransform>().rect.height;
+            _heightOfHpUnit = _barHeight / PlayerData.MaxHealth;
+            _poisonHeight = PlayerData.Instance.Poisoning * _heightOfHpUnit;
+            
+            UpdateBestScore();
+            UpdateHp(PlayerData.Instance.Health);
         }
 
         private void OnDisable()
         {
-            PlayerData.Instance.HealthChanged -= UpdateStats;
-            PlayerData.Instance.PoisoningChanged -= UpdateStats;
-            PlayerData.Instance.ScoreChanged -= UpdateStats;
+            PlayerData.Instance.HealthChanged -= UpdateHp;
+            PlayerData.Instance.PoisoningChanged -= UpdatePoisoning;
+            PlayerData.Instance.ScoreChanged -= UpdateScore;
             PlayerData.Instance.GameOver += OnGameOver;
+            if (_playerInput != null) 
+                _playerInput.actions["Navigate"].performed -= ReturnFocus;
             _playAgainButton.onClick.RemoveListener(RestartGame);
         }
 
-        void UpdateStats(float f) => UpdateStats();
-        private void UpdateStats()
+        private void UpdateHp(float hp)
         {
-            _statsText.text =
-                $"<color=\"red\">HP: {HealthString}</color>\n<color=\"green\">POIS: {PoisoningString}</color>\n<color=\"yellow\">SCR: {ScoreString}</color>";
+            UpdateBar(_poisonBar, hp * _heightOfHpUnit);
+            UpdateBar(_hpBar, _poisonBar.rectTransform.sizeDelta.y - _poisonHeight);
         }
 
+        private void UpdatePoisoning(float poisoning)
+        {
+            _poisonHeight = poisoning * _heightOfHpUnit * _poisoningScale;
+            UpdateBar(_hpBar, _poisonBar.rectTransform.sizeDelta.y - _poisonHeight);
+        }
+
+        private void UpdateScore(float score)
+        {
+            UpdateBar(_scoreBar, Mathf.Clamp01(score / PlayerData.MaxScore) * _barHeight);
+        }
+        
+        private void UpdateBestScore()
+        {
+            UpdateBar(_bestScoreBar, Mathf.Clamp01(PlayerData.Instance.BestScore / PlayerData.MaxScore) * _barHeight);
+        }
+
+        private void UpdateBar(Image bar, float height)
+        {
+            var delta = bar.rectTransform.sizeDelta;
+            delta.y = height;
+            bar.rectTransform.sizeDelta = delta;
+            print($"{bar.name}: {height}");
+        }
+        
         private void OnGameOver()
         {
             _gameOverPanel.SetActive(true);
@@ -65,7 +103,25 @@ namespace UI
         private void RestartGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Time.timeScale = 1;
+            PlayerData.IsGamePaused = false;
+        }
+
+        // public void OnPointerClick(PointerEventData eventData)
+        // {
+        //     throw new System.NotImplementedException();
+        // }
+        
+        private void ReturnFocus(InputAction.CallbackContext callbackContext)
+        {
+            if (!EventSystem.current.currentSelectedGameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(_playAgainButton.gameObject);
+            }
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            EventSystem.current.SetSelectedGameObject(_playAgainButton.gameObject);
         }
     }
 }

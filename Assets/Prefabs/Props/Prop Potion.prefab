@@ -50,14 +50,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48be289554364dac92d24b0fea604c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsGrounded>k__BackingField: 0
+  <IsDeactivated>k__BackingField: 0
   _potion: {fileID: 1992145099616791631}
   _crackedBottleBot: {fileID: 851276001640592671}
   _crackedBottleTop: {fileID: 5374301375884318356}
   _spilledPotion: {fileID: 2779778213547324727}
   _potionLiquidity: 25
   _potionInertia: 0.1
-  _ultimateImpact: 20
+  _ultimateImpact: 15
   _spilledPotionStartSpeed: 4
 --- !u!50 &4272530061276457154
 Rigidbody2D:

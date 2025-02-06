@@ -21,6 +21,7 @@ namespace Props
         private void Start()
         {
             PlayerData.Instance.ScoreChanged += Rebalance;
+            PlayerData.Instance.GameOver += StopAllCoroutines;
             _spawnDelay = new WaitForSeconds(_delayBeforeSpawn);
             _delayAfterSpawn = new WaitForSeconds(_fallingDelayOnSpawn);
             StartCoroutine(SpawnProps());
@@ -29,6 +30,7 @@ namespace Props
         private void OnDisable()
         {
             PlayerData.Instance.ScoreChanged -= Rebalance;
+            PlayerData.Instance.GameOver -= StopAllCoroutines;
         }
 
         private void Rebalance(float score)

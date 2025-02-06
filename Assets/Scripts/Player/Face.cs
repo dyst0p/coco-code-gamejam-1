@@ -8,6 +8,8 @@ namespace Player
     public class Face : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private SpriteRenderer _spriteRendererLeftHand;
+        [SerializeField] private SpriteRenderer _spriteRendererRightHand;
         [SerializeField] private SpriteRenderer _spriteRendererMouth;
         [SerializeField] private SpriteRenderer _spriteRendererTonge;
         [SerializeField] private Color _fullPoisonedColor;
@@ -72,7 +74,6 @@ namespace Player
         
             void LookAtFood(Transform pupil, Transform closestProp)
             {
-                print("closes prop " + closestProp.name);
                 Vector3 dir = (closestProp.position - pupil.parent.position).normalized;
                 pupil.localPosition = dir * _distanceToPupil;
             }
@@ -106,7 +107,10 @@ namespace Player
                 _mouth.localScale = _closeScale;
             }
             
-            _spriteRenderer.color = Color.Lerp(_spriteRenderer.color, _targetFaceColor, Time.deltaTime);
+            var newColor = Color.Lerp(_spriteRenderer.color, _targetFaceColor, Time.deltaTime);
+            _spriteRenderer.color = newColor;
+            _spriteRendererLeftHand.color = newColor;
+            _spriteRendererRightHand.color = newColor;
             SetAlpha(_spriteRenderer);
             SetAlpha(_spriteRendererMouth);
             SetAlpha(_spriteRendererTonge);

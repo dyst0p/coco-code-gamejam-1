@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerData : Singleton<PlayerData>
 {
     public const float MaxHealth = 100f;
+    public const float MaxScore = 100f;
     private const int SaveVersion = 1;
+    public static bool IsGamePaused;
     [SerializeField] private float _health = MaxHealth;
     [SerializeField] private float _poisoning;
     private static float _bestScore;
@@ -33,6 +35,7 @@ public class PlayerData : Singleton<PlayerData>
     protected override void Awake()
     {
         base.Awake();
+        Time.timeScale = 1f;
         void ClearSaves()
         {
             PlayerPrefs.SetInt("SaveVersion", SaveVersion);
@@ -70,6 +73,11 @@ public class PlayerData : Singleton<PlayerData>
 
     private void FixedUpdate()
     {
+        if (IsGamePaused)
+        {
+            return;
+        }
+        
         if (Poisoning != 0 && Health > 0)
         {
             ChangeHealth(-Poisoning * Time.fixedDeltaTime);
@@ -78,6 +86,7 @@ public class PlayerData : Singleton<PlayerData>
         if (Health <= 0 && !_isGameOver)
         {
             _isGameOver = true;
+            IsGamePaused = true;
             Time.timeScale = 0;
             GameOver?.Invoke();
         }

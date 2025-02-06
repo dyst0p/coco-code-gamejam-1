@@ -19,28 +19,28 @@ namespace Services
         
         public void MoveLeftHandler(InputAction.CallbackContext ctx)
         {
-            if (Time.timeScale == 0) 
+            if (PlayerData.IsGamePaused) 
                 return;
             OnMoveLeft?.Invoke(ctx.ReadValue<Vector2>());
         }
         
         public void CatchLeftHandler(InputAction.CallbackContext ctx)
         {
-            if (Time.timeScale == 0) 
+            if (PlayerData.IsGamePaused) 
                 return;
             OnCatchLeft?.Invoke(ctx.phase == InputActionPhase.Performed);
         }
         
         public void MoveRightHandler(InputAction.CallbackContext ctx)
         {
-            if (Time.timeScale == 0) 
+            if (PlayerData.IsGamePaused) 
                 return;
             OnMoveRight?.Invoke(ctx.ReadValue<Vector2>());
         }
         
         public void CatchRightHandler(InputAction.CallbackContext ctx)
         {
-            if (Time.timeScale == 0) 
+            if (PlayerData.IsGamePaused) 
                 return;
             OnCatchRight?.Invoke(ctx.phase == InputActionPhase.Performed);
         }

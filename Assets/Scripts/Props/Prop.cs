@@ -14,6 +14,7 @@ namespace Props
         private TagHandle _groundTag;
         private Side _lastHandSide = Side.None;
         private float _throwTime;
+        private readonly Color _deactivateColor = new(0.8f, 0.8f, 0.8f);
         
         [field:SerializeField]
         public bool IsDeactivated { get; protected set; }
@@ -71,6 +72,12 @@ namespace Props
         {
             IsDeactivated = true;
             AllProps.Remove(transform);
+            var renderers = GetComponentsInChildren<SpriteRenderer>();
+            foreach (var renderer in renderers)
+            {
+                var oldColor = renderer.color;
+                renderer.color = oldColor * _deactivateColor;
+            }
             PropDeactivated?.Invoke(this);
         }
     }
