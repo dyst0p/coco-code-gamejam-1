@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79a2a652d39cf7418240b1596c84e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsGrounded>k__BackingField: 0
+  _deactivateMaterial: {fileID: 6200000, guid: dfa3d97e324e4d241a029fc63f5285b8, type: 2}
+  <IsDeactivated>k__BackingField: 0
 --- !u!50 &4272530061276457154
 Rigidbody2D:
   serializedVersion: 5

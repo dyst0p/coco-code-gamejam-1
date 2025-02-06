@@ -15,7 +15,7 @@ namespace Props
         private Side _lastHandSide = Side.None;
         private float _throwTime;
         private readonly Color _deactivateColor = new(0.8f, 0.8f, 0.8f);
-        
+        [SerializeField] private PhysicsMaterial2D _deactivateMaterial;
         [field:SerializeField]
         public bool IsDeactivated { get; protected set; }
         public event Action<Prop> PropDeactivated;
@@ -78,6 +78,8 @@ namespace Props
                 var oldColor = renderer.color;
                 renderer.color = oldColor * _deactivateColor;
             }
+            
+            _rigidbody.sharedMaterial = _deactivateMaterial;
             PropDeactivated?.Invoke(this);
         }
     }

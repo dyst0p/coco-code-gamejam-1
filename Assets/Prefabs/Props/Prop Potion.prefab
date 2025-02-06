@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48be289554364dac92d24b0fea604c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deactivateMaterial: {fileID: 6200000, guid: dfa3d97e324e4d241a029fc63f5285b8, type: 2}
   <IsDeactivated>k__BackingField: 0
   _potion: {fileID: 1992145099616791631}
   _crackedBottleBot: {fileID: 851276001640592671}

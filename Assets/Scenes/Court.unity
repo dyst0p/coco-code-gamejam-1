@@ -308,7 +308,7 @@ Transform:
   m_GameObject: {fileID: 125874584}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 12, z: 0}
+  m_LocalPosition: {x: 0, y: 11.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2016,7 +2016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063687942335262349, guid: 8d9c9438d24c9754a9ec755cc0fff17e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 3.45
       objectReference: {fileID: 0}
     - target: {fileID: 9063687942335262349, guid: 8d9c9438d24c9754a9ec755cc0fff17e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3309,7 +3309,7 @@ MonoBehaviour:
   - {fileID: 2117266100}
   - {fileID: 1424777781}
   _propPrefabs:
-  - {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
   _delayBeforeSpawn: 1
   _fallingDelayOnSpawn: 2
   _dustCloudPrefab: {fileID: 24935778671857886, guid: c531ad1211aa84c418a2a47e3a087c4c, type: 3}
@@ -3516,7 +3516,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 480}
+  m_SizeDelta: {x: 1000, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1609322538
 MonoBehaviour:
@@ -3531,7 +3531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4485,7 +4485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063687942335262349, guid: 8d9c9438d24c9754a9ec755cc0fff17e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5
+      value: -3.45
       objectReference: {fileID: 0}
     - target: {fileID: 9063687942335262349, guid: 8d9c9438d24c9754a9ec755cc0fff17e, type: 3}
       propertyPath: m_LocalPosition.y

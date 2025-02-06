@@ -31,6 +31,7 @@ namespace Player
         {
             PlayerData.Instance.PoisoningChanged += ChangeFaceColor;
             PlayerData.Instance.HealthChanged += ChangeFaceColorAlpha;
+            PlayerData.Instance.GameOver += CloseEyes;
             _targetFaceColor = _startFaceColor = _spriteRenderer.color;
         }
 
@@ -38,6 +39,13 @@ namespace Player
         {
             PlayerData.Instance.PoisoningChanged -= ChangeFaceColor;
             PlayerData.Instance.HealthChanged -= ChangeFaceColorAlpha;
+            PlayerData.Instance.GameOver -= CloseEyes;
+        }
+
+        private void CloseEyes()
+        {
+            _leftPupil.parent.gameObject.SetActive(false);
+            _rightPupil.parent.gameObject.SetActive(false);
         }
 
         private void ChangeFaceColor(float poison)

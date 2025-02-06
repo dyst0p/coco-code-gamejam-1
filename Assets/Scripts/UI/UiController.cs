@@ -89,14 +89,14 @@ namespace UI
         private void OnGameOver()
         {
             _gameOverPanel.SetActive(true);
-            _gameOverText.text = $"GG\n";
+            _gameOverText.text = $"JESTER IS DEAD\n\n";
             if (PlayerData.Instance.Score > PlayerData.Instance.BestScore)
             {
-                _gameOverText.text += $"NEW BEST SCORE: {ScoreString}";
+                _gameOverText.text += $"NEW GREATEST OVATIONS: {ScoreString}";
             }
             else
             {
-                _gameOverText.text += $"YOUR SCORE: {ScoreString}\nBEST SCORE: {BestScoreString}";
+                _gameOverText.text += $"YOUR OVATION: {ScoreString}\nTHE GREATEST OVATION: {BestScoreString}";
             }
         }
 
