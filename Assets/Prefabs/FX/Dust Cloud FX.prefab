@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2292914328117363674}
   - component: {fileID: 6189967869681987487}
   m_Layer: 0
-  m_Name: Dust Cloud
+  m_Name: Dust Cloud FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

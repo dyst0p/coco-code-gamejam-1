@@ -83,7 +83,6 @@ namespace UI
             var delta = bar.rectTransform.sizeDelta;
             delta.y = height;
             bar.rectTransform.sizeDelta = delta;
-            print($"{bar.name}: {height}");
         }
         
         private void OnGameOver()
@@ -105,11 +104,6 @@ namespace UI
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             PlayerData.IsGamePaused = false;
         }
-
-        // public void OnPointerClick(PointerEventData eventData)
-        // {
-        //     throw new System.NotImplementedException();
-        // }
         
         private void ReturnFocus(InputAction.CallbackContext callbackContext)
         {
