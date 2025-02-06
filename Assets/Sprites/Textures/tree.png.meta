@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c2a63588fd7e51142abbcae27ee6d393
+guid: 862eee46d96a1bf4d9e1a4602f2c7800
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8008370975909469230
-    second: progress_transparent_0
+      213: -8667466294985060184
+    second: tree_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,10 +46,10 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 7
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: progress_transparent_0
+      name: tree_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 38
         y: 0
-        width: 32
-        height: 64
+        width: 880
+        height: 2048
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e2cd1a0f8f2732f60800000000000000
-      internalID: 8008370975909469230
+      spriteID: 8a09eb0b359f6b780800000000000000
+      internalID: -8667466294985060184
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tree_0: -8667466294985060184
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

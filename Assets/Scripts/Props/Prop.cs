@@ -14,7 +14,7 @@ namespace Props
         private TagHandle _groundTag;
         private Side _lastHandSide = Side.None;
         private float _throwTime;
-        private readonly Color _deactivateColor = new(0.8f, 0.8f, 0.8f);
+        private readonly Color _deactivateColor = new(0.7f, 0.7f, 0.7f);
         [SerializeField] private PhysicsMaterial2D _deactivateMaterial;
         [field:SerializeField]
         public bool IsDeactivated { get; protected set; }

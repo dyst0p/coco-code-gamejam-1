@@ -53,12 +53,6 @@ namespace Player
             DrawLine();
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = _side == Side.Left ? Color.cyan : Color.magenta;
-            Gizmos.DrawWireSphere(transform.parent.position, _maxDistance);
-        }
-
         private void Move(Vector2 input)
         {
             _targetDirection = input;

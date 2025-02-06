@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 19d582706104f5f4393c43b6805fcdd9
+guid: b7d3dab6fe72c5e4ba922482ccabae1e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1076928263739808839
-    second: button_red_close_0
+      213: 4165521114830426556
+    second: progress_red_border_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: button_red_close_0
+      name: progress_red_border_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 48
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b3e53f237bfd01f0800000000000000
-      internalID: -1076928263739808839
+      spriteID: cb15bd15267eec930800000000000000
+      internalID: 4165521114830426556
       vertices: []
       indices: 
       edges: []
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      progress_red_border_0: 4165521114830426556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

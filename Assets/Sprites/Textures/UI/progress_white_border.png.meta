@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bb4d8409da39ed9479275a2e2fa7c207
+guid: 44ec0e4309d354d41a290ab642c4b68a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7742360020377522249
-    second: progress_green_border_0
+      213: 5681648407218406768
+    second: progress_white_border_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: progress_green_border_0
+      name: progress_white_border_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7bf263e059c9d8490800000000000000
-      internalID: -7742360020377522249
+      spriteID: 075caeaaf1549de40800000000000000
+      internalID: 5681648407218406768
       vertices: []
       indices: 
       edges: []
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      progress_white_border_0: 5681648407218406768
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
