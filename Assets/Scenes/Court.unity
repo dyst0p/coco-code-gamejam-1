@@ -340,8 +340,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 810190953}
-  _spriteRendererLeftHand: {fileID: 299567917}
-  _spriteRendererRightHand: {fileID: 1446004258}
   _spriteRendererMouth: {fileID: 756779557}
   _spriteRendererTonge: {fileID: 1566481687}
   _fullPoisonedColor: {r: 0.38823533, g: 0.6, b: 0.16176471, a: 1}
@@ -383,11 +381,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!212 &299567917 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1892885854301401423, guid: 8d9c9438d24c9754a9ec755cc0fff17e, type: 3}
-  m_PrefabInstance: {fileID: 1018387734365326310}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &362840298
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,10 +446,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ergergaergaergraeg
+  m_text: "dfsdfs\n\u0432\u044B\u0430\u044B\u0432\u0430\u0432\u044B\u0430\u0432\u044B\n213123"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6c46d1811f9ba741b8c5f19647042c4, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: cd5d8a91a98f73a498328665bab39e6a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3177,11 +3170,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 754673634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1446004258 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1892885854301401423, guid: 8d9c9438d24c9754a9ec755cc0fff17e, type: 3}
-  m_PrefabInstance: {fileID: 872650079}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1509464232
 GameObject:
   m_ObjectHideFlags: 0

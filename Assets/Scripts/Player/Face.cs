@@ -8,8 +8,6 @@ namespace Player
     public class Face : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private SpriteRenderer _spriteRendererLeftHand;
-        [SerializeField] private SpriteRenderer _spriteRendererRightHand;
         [SerializeField] private SpriteRenderer _spriteRendererMouth;
         [SerializeField] private SpriteRenderer _spriteRendererTonge;
         [SerializeField] private Color _fullPoisonedColor;
@@ -61,6 +59,8 @@ namespace Player
                 minDistance = float.PositiveInfinity;
                 foreach (Transform prop in props)
                 {
+                    if (prop == null)
+                        continue;
                     float sqrDistance = (prop.position - _mouth.position).sqrMagnitude;
                     if (sqrDistance < minDistance)
                     {
@@ -109,8 +109,6 @@ namespace Player
             
             var newColor = Color.Lerp(_spriteRenderer.color, _targetFaceColor, Time.deltaTime);
             _spriteRenderer.color = newColor;
-            _spriteRendererLeftHand.color = newColor;
-            _spriteRendererRightHand.color = newColor;
             SetAlpha(_spriteRenderer);
             SetAlpha(_spriteRendererMouth);
             SetAlpha(_spriteRendererTonge);
