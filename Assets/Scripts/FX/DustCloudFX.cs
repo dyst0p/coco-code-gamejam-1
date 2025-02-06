@@ -21,18 +21,18 @@ namespace FX
             }
         }
 
-        private void OnDisable()
+        public override void Execute()
+        {
+            StartCoroutine(DustCoroutine());
+        }
+
+        protected override void CleanUp()
         {
             StopAllCoroutines();
             for (int i = 0; i < _sprites.Length; i++)
             {
                 _subClouds[i].transform.localPosition = _subCloudsStartPositions[i];
             }
-        }
-
-        public override void Execute()
-        {
-            StartCoroutine(DustCoroutine());
         }
 
         private IEnumerator DustCoroutine()
