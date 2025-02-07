@@ -46,7 +46,12 @@ namespace Props
                 if (_activeProps < _propsToSpawn)
                 {
                     yield return _spawnDelay;
-                    Prop prop = Instantiate(_propPrefabs[Random.Range(0, _propPrefabs.Length)],
+                    int propMaxIndex = Mathf.Min(Mathf.CeilToInt(PlayerData.Instance.Score/3), _propPrefabs.Length);
+                    if (propMaxIndex < 3)
+                        propMaxIndex = 3;
+                    int propIndex = Random.Range(0, propMaxIndex);
+                    print($"max index = {propMaxIndex} generated index = {propIndex}");
+                    Prop prop = Instantiate(_propPrefabs[propIndex],
                         _spawnPoints[Random.Range(0, _spawnPoints.Length)].position,
                         Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
                     prop.transform.SetParent(transform);
