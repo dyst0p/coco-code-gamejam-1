@@ -1,3 +1,4 @@
+using Services;
 using UnityEngine;
 
 namespace Props
@@ -8,6 +9,7 @@ namespace Props
         protected override void ApplyEffect()
         {
             PlayerData.Instance.ChangePoisoning(_poisonPower);
+            this.CreateTextFx($"<color=green>+{_poisonPower}");
         }
     }
 }

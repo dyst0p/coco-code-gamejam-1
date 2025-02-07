@@ -1,3 +1,4 @@
+using Services;
 using UnityEngine;
 
 namespace Props
@@ -8,6 +9,7 @@ namespace Props
         public override void Eat()
         {
             PlayerData.Instance.ChangePoisoning(-_antidoteAmount);
+            this.CreateTextFx($"<color=green>-{_antidoteAmount}");
             base.Eat();
         }
     }

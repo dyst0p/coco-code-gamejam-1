@@ -211,7 +211,7 @@
                 {
                     "name": "",
                     "id": "bf33e0ce-6340-4242-a3de-a0be6e5479d6",
-                    "path": "<Keyboard>/rightCtrl",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

@@ -52,12 +52,9 @@ namespace Props
                 int modificator = _lastHandSide != newHand ? 2 : 1;
                 float score = Time.fixedTime - _throwTime;
                 PlayerData.Instance.AddScore(score * modificator);
-                var textFx = FxService.Instance.GetFx(typeof(TextFx));
-                textFx.transform.position = parent.transform.position;
-                string text = modificator == 1
+                this.CreateTextFx(modificator == 1
                     ? $"<color=yellow>+{(int) (score * 10)}"
-                    : $"<color=yellow>+{(int) (score * 10)}\nx2";
-                textFx.Execute(text);
+                    : $"<color=yellow>+{(int) (score * 10)}\nx2");
             }
             _lastHandSide = newHand;
         }

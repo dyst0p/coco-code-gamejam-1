@@ -1,5 +1,6 @@
 using System.Collections;
 using Player;
+using Services;
 using UnityEngine;
 
 namespace Props
@@ -22,6 +23,7 @@ namespace Props
             {
                 hand.HurtAnimate();
                 PlayerData.Instance.ChangeHealth(-_damage);
+                this.CreateTextFx($"<color=red>-{_damage}");
                 yield return new WaitForSeconds(_delayInSeconds);
             }
         }

@@ -1,3 +1,4 @@
+using Services;
 using UnityEngine;
 
 namespace Props
@@ -8,6 +9,7 @@ namespace Props
         public override void Eat()
         {
             PlayerData.Instance.ChangeHealth(_healAmount);
+            this.CreateTextFx($"<color=red>+{_healAmount}");
             base.Eat();
         }
     }
