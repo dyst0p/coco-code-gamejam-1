@@ -12,6 +12,15 @@ namespace Services
         [SerializeField] private Fx[] _prefabs;
         private readonly Dictionary<Type,LinkedPool<Fx>> _fxPools = new();
 
+        protected override void Awake()
+        {
+            base.Awake();
+            // burnout
+            var fx = GetFx(typeof(TextFx));
+            fx.transform.position = Vector2.down * 10;
+            fx.Execute("<color=red>пипи\n23");
+        }
+
         public Fx GetFx(Type fxType)
         {
             if (_fxPools.TryGetValue(fxType, out LinkedPool<Fx> fxPool))

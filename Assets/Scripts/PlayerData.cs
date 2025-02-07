@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlayerData : Singleton<PlayerData>
 {
     public const float MaxHealth = 100f;
-    public const float MaxScore = 100f;
+    public const float MaxScore = 120f;
     private const int SaveVersion = 1;
     public static bool IsGamePaused;
+    public static bool IsFirstStart = true;
     [SerializeField] private float _health = MaxHealth;
     [SerializeField] private float _poisoning;
     private static float _bestScore;
     private bool _isGameOver;
+    
     
     public float Health
     {

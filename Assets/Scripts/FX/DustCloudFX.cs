@@ -21,7 +21,7 @@ namespace FX
             }
         }
 
-        public override void Execute()
+        public override void Execute(object arg = null)
         {
             StartCoroutine(DustCoroutine());
         }

@@ -88,7 +88,7 @@ namespace UI
         private void OnGameOver()
         {
             _gameOverPanel.SetActive(true);
-            _gameOverText.text = $"JESTER IS DEAD\n\n";
+            _gameOverText.text = $"JESTER IS DEAD\n...\n";
             if (PlayerData.Instance.Score > PlayerData.Instance.BestScore)
             {
                 _gameOverText.text += $"NEW GREATEST OVATIONS: {ScoreString}";
@@ -116,6 +116,20 @@ namespace UI
         public void OnPointerClick(PointerEventData eventData)
         {
             EventSystem.current.SetSelectedGameObject(_playAgainButton.gameObject);
+        }
+
+        public void Exit()
+        {
+            if (Application.isEditor)
+            {
+                #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+                #endif
+            }
+            else
+            {
+                Application.Quit();
+            }
         }
     }
 }
