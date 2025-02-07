@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using FX;
 using Props;
+using Services;
 using UnityEngine;
 
 namespace Player
@@ -44,6 +46,10 @@ namespace Player
 
         private void CloseEyes()
         {
+            var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
+            soundFx.transform.position = transform.position;
+            soundFx.Execute(new SoundFxRequest(SoundFxType.Death));
+            
             _leftPupil.parent.gameObject.SetActive(false);
             _rightPupil.parent.gameObject.SetActive(false);
         }

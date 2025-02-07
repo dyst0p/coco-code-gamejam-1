@@ -31,6 +31,7 @@ namespace UI
 
         private void Awake()
         {
+            Cursor.visible = false;
             if (PlayerData.IsFirstStart)
             {
                 Time.timeScale = 0;

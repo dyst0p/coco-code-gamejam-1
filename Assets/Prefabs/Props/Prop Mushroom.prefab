@@ -90,7 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068e3f4831884d6f9a9759a8c2bb2e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deactivateMaterial: {fileID: 0}
+  _hitSound: 101
+  _maxVelocityToHitSound: 8
+  _deactivateMaterial: {fileID: 6200000, guid: dfa3d97e324e4d241a029fc63f5285b8, type: 2}
   <IsDeactivated>k__BackingField: 0
   _antidoteAmount: 3
 --- !u!1001 &5706586326355572330

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FX;
 using Props;
 using Services;
 using UnityEngine;
@@ -66,6 +67,10 @@ namespace Player
 
         public void HurtAnimate()
         {
+            var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
+            soundFx.transform.position = transform.position;
+            soundFx.Execute(new SoundFxRequest(SoundFxType.Hurt));
+            
             IEnumerator ColorAnimate(float duration)
             {
                 float timeElapsed = 0;
@@ -122,6 +127,11 @@ namespace Player
             {
                 return;
             }
+            
+            var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
+            soundFx.transform.position = transform.position;
+            soundFx.Execute(new SoundFxRequest(SoundFxType.Catch));
+            
             _caughtProp = closestProp.GetComponent<Prop>();
             _caughtProp.Fix(_handRigidbody);
 

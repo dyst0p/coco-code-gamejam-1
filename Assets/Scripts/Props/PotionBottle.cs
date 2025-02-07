@@ -1,4 +1,6 @@
 using System;
+using FX;
+using Services;
 using UnityEngine;
 
 namespace Props
@@ -43,6 +45,10 @@ namespace Props
 
         private void OnCracked()
         {
+            var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
+            soundFx.transform.position = transform.position;
+            soundFx.Execute(new SoundFxRequest(SoundFxType.BreakGlass));
+            
             Vector2 forceUp = (_rigidbody.linearVelocity.normalized + (Vector2)transform.up) *
                           _rigidbody.linearVelocity.magnitude / 2;
             Vector2 forceDown = (_rigidbody.linearVelocity.normalized - (Vector2)transform.up) *

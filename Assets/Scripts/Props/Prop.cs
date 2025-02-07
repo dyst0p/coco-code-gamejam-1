@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
+using FX;
 using Player;
 using Services;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Props
 {
     public class Prop : MonoBehaviour
     {
+        [SerializeField] private SoundFxType _hitSound = SoundFxType.HitStone;
+        [SerializeField] private float _maxVelocityToHitSound = 15f;
         public static readonly List<Transform> AllProps = new();
         protected Rigidbody2D _rigidbody;
         private FixedJoint2D _fixedJoint;
@@ -24,6 +28,7 @@ namespace Props
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _rigidbody.simulated = true;
+            _rigidbody.AddTorque(Random.Range(-0.5f, 0.5f) * -_rigidbody.inertia, ForceMode2D.Impulse);
             _fixedJoint = GetComponent<FixedJoint2D>();
             _groundTag = TagHandle.GetExistingTag("Ground");
             AllProps.Add(transform);
@@ -31,6 +36,14 @@ namespace Props
 
         protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
+            if (!IsDeactivated)
+            {
+                var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
+                soundFx.transform.position = collision.GetContact(0).point;
+                float volume = Mathf.Clamp01(collision.relativeVelocity.magnitude / _maxVelocityToHitSound);
+                soundFx.Execute(new SoundFxRequest(_hitSound, volume));
+            }
+            
             if (collision.gameObject.CompareTag(_groundTag) || 
                 collision.gameObject.GetComponent<Prop>()?.IsDeactivated == true)
             {
@@ -106,6 +119,10 @@ namespace Props
 
         public virtual void Eat()
         {
+            var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
+            soundFx.transform.position = transform.position;
+            soundFx.Execute(new SoundFxRequest(SoundFxType.EatFood));
+            
             OnDeactivated();
             Destroy(gameObject);
         }

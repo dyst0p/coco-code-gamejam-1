@@ -1,4 +1,5 @@
 using System;
+using FX;
 using Services;
 using UnityEngine;
 
@@ -96,6 +97,13 @@ public class PlayerData : Singleton<PlayerData>
     
     public void AddScore(float score)
     {
+        if (score > 7)
+        {
+            var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
+            soundFx.transform.position = transform.position;
+            soundFx.Execute(new SoundFxRequest(SoundFxType.OvationBig));
+        }
+        
         int oldScoreInt = (int) (Score * 10);
         Score += score;
         int newScoreInt = (int) (Score * 10);

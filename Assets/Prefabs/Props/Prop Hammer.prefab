@@ -70,6 +70,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3331269228640231084, guid: 233b31ff888787249b990e2512e1560c, type: 3}
+      propertyPath: _hitSound
+      value: 103
+      objectReference: {fileID: 0}
     - target: {fileID: 4272530061276457154, guid: 233b31ff888787249b990e2512e1560c, type: 3}
       propertyPath: m_Mass
       value: 1.915175

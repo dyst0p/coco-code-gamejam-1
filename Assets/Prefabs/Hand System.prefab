@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1366122769614974548}
   - component: {fileID: 8948680677039858579}
+  - component: {fileID: 3500231588521918941}
   m_Layer: 0
   m_Name: hand_zone_ring
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d35971c6e711f594888e3c4ff2e106ed, type: 3}
-  m_Color: {r: 0.5882353, g: 0, b: 0, a: 0.76862746}
+  m_Color: {r: 0.5882353, g: 0, b: 0, a: 0.69803923}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,6 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3500231588521918941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924312932481947322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc269493ec5dc243a3187c6bd663572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3311644054195436678
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,5 @@
+using FX;
+using Services;
 using UnityEngine;
 
 namespace Props
@@ -14,6 +16,10 @@ namespace Props
         {
             if (other.gameObject.CompareTag(_groundTag))
             {
+                var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
+                soundFx.transform.position = transform.position;
+                soundFx.Execute(new SoundFxRequest(SoundFxType.HitSoft));
+                
                 ApplyEffect();
                 Destroy(this);
             }
