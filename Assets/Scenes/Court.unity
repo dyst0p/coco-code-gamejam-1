@@ -6073,6 +6073,7 @@ MonoBehaviour:
   _fallingDelayOnSpawn: 1.5
   _poison: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
   _mushroom: {fileID: 4357785974733487533, guid: 2dfb6665740fb1b41b45a9c0e091306c, type: 3}
+  _clover: {fileID: 4972814693481827252, guid: f9297d23aafea1349949cc592445050e, type: 3}
 --- !u!1 &1566481685
 GameObject:
   m_ObjectHideFlags: 0

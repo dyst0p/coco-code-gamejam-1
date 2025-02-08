@@ -79,7 +79,7 @@ namespace Props
                     
                     var propPrefab = spawnList[propIndex];
                     
-                    if (_hasCloverChance && Random.Range(0,1000) == 7)
+                    if (PlayerData.Instance.Score >= 30 && _hasCloverChance && Random.Range(0,1000) == 7)
                     {
                         _hasCloverChance = false;
                         propPrefab = _clover;
