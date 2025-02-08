@@ -20,6 +20,7 @@ namespace UI
         [SerializeField] private GameObject _startPanel;
         [SerializeField] private TMP_Text _gameOverText;
         [SerializeField] private Button _playAgainButton;
+        [SerializeField] private GameObject[] _onlyForStandaloneButtons;
         private float _barHeight;
         private float _poisonHeight;
         private float _heightOfHpUnit;
@@ -31,6 +32,13 @@ namespace UI
 
         private void Awake()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            foreach (var button in _onlyForStandaloneButtons)
+            {
+                button.SetActive(false);
+            }
+#endif
+            
             Cursor.visible = false;
             if (PlayerData.IsFirstStart)
             {
