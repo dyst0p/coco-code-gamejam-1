@@ -1,0 +1,236 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PropsSpawner - GJ
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 8a74df86db6ce6a4e994cdfcd0b0d7e1, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _propsToSpawn
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _spawnPoints.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: '_spawnPoints.Array.data[0]'
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: '_spawnPoints.Array.data[1]'
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: '_spawnPoints.Array.data[2]'
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: '_spawnPoints.Array.data[3]'
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _propPrefabs.Array.size
+    value: 40
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[0]'
+    value: 
+    objectReference: {fileID: 1036849149830633150, guid: b21504414de2b9b4ea5ffd89a6487af2, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[1]'
+    value: 
+    objectReference: {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[2]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[3]'
+    value: 
+    objectReference: {fileID: 4922930281945655864, guid: 381b0b44313bc2447b25ceeb6b499ae8, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[4]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[5]'
+    value: 
+    objectReference: {fileID: 4149873371042429111, guid: bd7d4dc71bdd8a34e8b8e76cac42647c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[6]'
+    value: 
+    objectReference: {fileID: 4357785974733487533, guid: 2dfb6665740fb1b41b45a9c0e091306c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[7]'
+    value: 
+    objectReference: {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[8]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[9]'
+    value: 
+    objectReference: {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[10]'
+    value: 
+    objectReference: {fileID: 1036849149830633150, guid: b21504414de2b9b4ea5ffd89a6487af2, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[11]'
+    value: 
+    objectReference: {fileID: 4149873371042429111, guid: bd7d4dc71bdd8a34e8b8e76cac42647c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[12]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[13]'
+    value: 
+    objectReference: {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[14]'
+    value: 
+    objectReference: {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[15]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[16]'
+    value: 
+    objectReference: {fileID: 4922930281945655864, guid: 381b0b44313bc2447b25ceeb6b499ae8, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[17]'
+    value: 
+    objectReference: {fileID: 4149873371042429111, guid: bd7d4dc71bdd8a34e8b8e76cac42647c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[18]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[19]'
+    value: 
+    objectReference: {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[20]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[21]'
+    value: 
+    objectReference: {fileID: 4149873371042429111, guid: bd7d4dc71bdd8a34e8b8e76cac42647c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[22]'
+    value: 
+    objectReference: {fileID: 4357785974733487533, guid: 2dfb6665740fb1b41b45a9c0e091306c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[23]'
+    value: 
+    objectReference: {fileID: 1036849149830633150, guid: b21504414de2b9b4ea5ffd89a6487af2, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[24]'
+    value: 
+    objectReference: {fileID: 4922930281945655864, guid: 381b0b44313bc2447b25ceeb6b499ae8, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[25]'
+    value: 
+    objectReference: {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[26]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[27]'
+    value: 
+    objectReference: {fileID: 1036849149830633150, guid: b21504414de2b9b4ea5ffd89a6487af2, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[28]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[29]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[30]'
+    value: 
+    objectReference: {fileID: 4149873371042429111, guid: bd7d4dc71bdd8a34e8b8e76cac42647c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[31]'
+    value: 
+    objectReference: {fileID: 4357785974733487533, guid: 2dfb6665740fb1b41b45a9c0e091306c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[32]'
+    value: 
+    objectReference: {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[33]'
+    value: 
+    objectReference: {fileID: 4922930281945655864, guid: 381b0b44313bc2447b25ceeb6b499ae8, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[34]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[35]'
+    value: 
+    objectReference: {fileID: 6762338796904086937, guid: 1b93715655c05154c80bef4a130ea748, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[36]'
+    value: 
+    objectReference: {fileID: 4357785974733487533, guid: 2dfb6665740fb1b41b45a9c0e091306c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[37]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[38]'
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: '_propPrefabs.Array.data[39]'
+    value: 
+    objectReference: {fileID: 1036849149830633150, guid: b21504414de2b9b4ea5ffd89a6487af2, type: 3}
+  - target: {fileID: 0}
+    propertyPath: _delayBeforeSpawn
+    value: 0.9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _fallingDelayOnSpawn
+    value: 1.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _poison
+    value: 
+    objectReference: {fileID: 7541413864293209989, guid: b2dd791e592ed3744891cd902205c768, type: 3}
+  - target: {fileID: 0}
+    propertyPath: _mushroom
+    value: 
+    objectReference: {fileID: 4357785974733487533, guid: 2dfb6665740fb1b41b45a9c0e091306c, type: 3}
+  m_ExcludedProperties: []
+  m_CoupledType:
+    m_NativeTypeID: 0
+    m_ManagedTypePPtr: {fileID: 0}
+    m_ManagedTypeFallback: 
+  m_CoupledProperties: []
