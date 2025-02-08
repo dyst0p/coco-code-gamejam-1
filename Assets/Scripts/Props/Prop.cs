@@ -63,11 +63,21 @@ namespace Props
             if (_lastHandSide != Side.None && !IsDeactivated)
             {
                 int modificator = _lastHandSide != newHand ? 2 : 1;
+                
                 float score = Time.fixedTime - _throwTime;
+                string fxText = modificator == 1
+                    ? $"<color=yellow>+{(int)(score * 10)}"
+                    : $"<color=yellow>+{(int)(score * 10)}\nx2";
+                if (PlayerData.Instance.IsLucky)
+                {
+                    modificator *= 2;
+                    fxText = modificator == 2
+                        ? $"<color=purple>+{(int)(score * 10)}\nx2"
+                        : $"<color=purple>+{(int)(score * 10)}\nx4";
+                }
                 PlayerData.Instance.AddScore(score * modificator);
-                this.CreateTextFx(modificator == 1
-                    ? $"<color=yellow>+{(int) (score * 10)}"
-                    : $"<color=yellow>+{(int) (score * 10)}\nx2");
+                
+                this.CreateTextFx(fxText);
             }
             _lastHandSide = newHand;
         }

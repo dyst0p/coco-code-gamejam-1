@@ -17,6 +17,8 @@ namespace Props
         [Header("Prefabs")] 
         [SerializeField] private Prop _poison;
         [SerializeField] private Prop _mushroom;
+        [SerializeField] private Prop _clover;
+        private bool _hasCloverChance = true;
         private int _spawnWithoutPoison;
         private int _activeProps;
         private WaitForSeconds _spawnDelay;
@@ -74,13 +76,23 @@ namespace Props
                         }
                         break;
                     }
-
-                    if (_spawnWithoutPoison > 0)
-                        _spawnWithoutPoison -= 1;
-                    else if (isPoison)
-                        _spawnWithoutPoison += 1;
                     
-                    Prop prop = Instantiate(spawnList[propIndex],
+                    var propPrefab = spawnList[propIndex];
+                    
+                    if (_hasCloverChance && Random.Range(0,1000) == 7)
+                    {
+                        _hasCloverChance = false;
+                        propPrefab = _clover;
+                    }
+                    else
+                    {
+                        if (_spawnWithoutPoison > 0)
+                            _spawnWithoutPoison -= 1;
+                        else if (isPoison)
+                            _spawnWithoutPoison += 1;
+                    }
+                    
+                    Prop prop = Instantiate(propPrefab,
                         _spawnPoints[Random.Range(0, _spawnPoints.Length)].position,
                         Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
                     prop.transform.SetParent(transform);

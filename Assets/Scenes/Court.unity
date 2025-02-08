@@ -1668,6 +1668,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   _poisoning: 0
+  _ovationThreshold: 4
+  _bigOvationThreshold: 8
+  IsLucky: 0
   <Score>k__BackingField: 0
 --- !u!1 &436203161
 GameObject:

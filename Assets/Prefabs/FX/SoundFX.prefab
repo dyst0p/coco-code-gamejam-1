@@ -184,9 +184,12 @@ MonoBehaviour:
     Clips:
     - {fileID: 8300000, guid: 062728e88f8c18f4eab838549211dc83, type: 3}
   - <Key>k__BackingField: 600
-    Clips: []
+    Clips:
+    - {fileID: 8300000, guid: b562bed17b9a40947a533530204aa29f, type: 3}
+    - {fileID: 8300000, guid: 82e2ffe8b1734d64090ea24e9f1eb9cb, type: 3}
+    - {fileID: 8300000, guid: 6a9a9fc1904b48b47b4dd981c249ef12, type: 3}
+    - {fileID: 8300000, guid: aeec6a5be44159e449c7c92fb07bb5f8, type: 3}
   - <Key>k__BackingField: 601
     Clips:
-    - {fileID: 8300000, guid: b596a536f7305354a8c3df556c0126be, type: 3}
-    - {fileID: 8300000, guid: 80b6742db5c199041bc241a35af034df, type: 3}
-    - {fileID: 8300000, guid: 2618d0b4d3ab4774a84d6c610dbf71c7, type: 3}
+    - {fileID: 8300000, guid: 7625d80dc2f524641ad3f2663e0554d4, type: 3}
+    - {fileID: 8300000, guid: c068fb986d14f9741b0b1f4f55cdb1cb, type: 3}

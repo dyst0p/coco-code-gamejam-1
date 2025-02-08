@@ -7,13 +7,16 @@ public class PlayerData : Singleton<PlayerData>
 {
     public const float MaxHealth = 100f;
     public const float MaxScore = 120f;
-    private const int SaveVersion = 1;
+    private const int SaveVersion = 2;
     public static bool IsGamePaused;
     public static bool IsFirstStart = true;
     [SerializeField] private float _health = MaxHealth;
     [SerializeField] private float _poisoning;
     private static float _bestScore;
     private bool _isGameOver;
+    public float _ovationThreshold = 4;
+    public float _bigOvationThreshold = 8;
+    public bool IsLucky;
     
     
     public float Health
@@ -97,11 +100,14 @@ public class PlayerData : Singleton<PlayerData>
     
     public void AddScore(float score)
     {
-        if (score > 7)
+        if (score > _ovationThreshold)
         {
             var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
             soundFx.transform.position = transform.position;
-            soundFx.Execute(new SoundFxRequest(SoundFxType.OvationBig));
+            var ovationType = score > _bigOvationThreshold 
+                ? SoundFxType.OvationBig 
+                : SoundFxType.Ovation;
+            soundFx.Execute(new SoundFxRequest(ovationType));
         }
         
         int oldScoreInt = (int) (Score * 10);
