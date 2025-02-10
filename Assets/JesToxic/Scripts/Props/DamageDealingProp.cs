@@ -1,9 +1,10 @@
 using System.Collections;
-using Player;
-using Services;
+using JesToxic.Player;
+using JesToxic.Services;
+using JesToxic.Tools;
 using UnityEngine;
 
-namespace Props
+namespace JesToxic.Props
 {
     public class DamageDealingProp : Prop
     {

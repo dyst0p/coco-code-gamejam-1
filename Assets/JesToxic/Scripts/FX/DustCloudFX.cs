@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace FX
+namespace JesToxic.FX
 {
     public class DustCloudFX : Fx
     {

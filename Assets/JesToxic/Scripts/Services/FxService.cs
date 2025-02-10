@@ -1,25 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FX;
+using JesToxic.FX;
+using JesToxic.Tools;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Services
+namespace JesToxic.Services
 {
     public class FxService : Singleton<FxService>
     {
         [SerializeField] private Fx[] _prefabs;
         private readonly Dictionary<Type,LinkedPool<Fx>> _fxPools = new();
-
-        protected override void Awake()
-        {
-            base.Awake();
-            // burnout
-            var fx = GetFx(typeof(TextFx));
-            fx.transform.position = Vector2.down * 10;
-            fx.Execute("<color=red>пипи\n23");
-        }
 
         public Fx GetFx(Type fxType)
         {

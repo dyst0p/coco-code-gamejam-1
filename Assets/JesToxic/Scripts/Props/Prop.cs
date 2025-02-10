@@ -1,27 +1,29 @@
 using System;
 using System.Collections.Generic;
-using FX;
-using Player;
-using Services;
+using JesToxic.FX;
+using JesToxic.Player;
+using JesToxic.Services;
+using JesToxic.Tools;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Props
+namespace JesToxic.Props
 {
+    [RequireComponent(typeof(Rigidbody2D), typeof(FixedJoint2D))]
     public class Prop : MonoBehaviour
     {
+        public static readonly List<Transform> AllProps = new();
         [SerializeField] private SoundFxType _hitSound = SoundFxType.HitStone;
         [SerializeField] private float _maxVelocityToHitSound = 15f;
-        public static readonly List<Transform> AllProps = new();
+        [SerializeField] private PhysicsMaterial2D _deactivateMaterial;
         protected Rigidbody2D _rigidbody;
+        private readonly Color _deactivateColor = new(0.7f, 0.7f, 0.7f);
         private FixedJoint2D _fixedJoint;
         private TagHandle _groundTag;
         private Side _lastHandSide = Side.None;
         private float _throwTime;
-        private readonly Color _deactivateColor = new(0.7f, 0.7f, 0.7f);
-        [SerializeField] private PhysicsMaterial2D _deactivateMaterial;
-        [field:SerializeField]
-        public bool IsDeactivated { get; protected set; }
+
+        [field:SerializeField] public bool IsDeactivated { get; protected set; }
         public event Action<Prop> PropDeactivated;
         
         protected virtual void OnEnable()
@@ -38,10 +40,8 @@ namespace Props
         {
             if (!IsDeactivated)
             {
-                var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
-                soundFx.transform.position = collision.GetContact(0).point;
                 float volume = Mathf.Clamp01(collision.relativeVelocity.magnitude / _maxVelocityToHitSound);
-                soundFx.Execute(new SoundFxRequest(_hitSound, volume));
+                this.CreateSoundFx(_hitSound, volume);
             }
             
             if (collision.gameObject.CompareTag(_groundTag) || 
@@ -87,7 +87,6 @@ namespace Props
             _fixedJoint.connectedBody = null;
             _fixedJoint.enabled = false;
             
-            // multiply velocity
             _rigidbody.linearVelocity *= velocityModifiers;
             _rigidbody.AddTorque(_rigidbody.linearVelocity.magnitude * throwTorqueMoment *
                                  Mathf.Sign(transform.position.x - _rigidbody.transform.position.x));
@@ -100,10 +99,10 @@ namespace Props
             IsDeactivated = true;
             AllProps.Remove(transform);
             var renderers = GetComponentsInChildren<SpriteRenderer>();
-            foreach (var renderer in renderers)
+            foreach (var spriteRenderer in renderers)
             {
-                var oldColor = renderer.color;
-                renderer.color = oldColor * _deactivateColor;
+                var oldColor = spriteRenderer.color;
+                spriteRenderer.color = oldColor * _deactivateColor;
             }
             
             _rigidbody.sharedMaterial = _deactivateMaterial;
@@ -129,9 +128,7 @@ namespace Props
 
         public virtual void Eat()
         {
-            var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
-            soundFx.transform.position = transform.position;
-            soundFx.Execute(new SoundFxRequest(SoundFxType.EatFood));
+            this.CreateSoundFx(SoundFxType.EatFood);
             
             OnDeactivated();
             Destroy(gameObject);

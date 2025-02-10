@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Services
+namespace JesToxic.Tools
 {
     public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {

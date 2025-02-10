@@ -1,29 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
-using FX;
-using Props;
-using Services;
+using JesToxic.FX;
+using JesToxic.Props;
+using JesToxic.Services;
 using UnityEngine;
 
-namespace Player
+namespace JesToxic.Player
 {
     public class Face : MonoBehaviour
     {
+        [Header("Face")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private SpriteRenderer _spriteRendererMouth;
-        [SerializeField] private SpriteRenderer _spriteRendererTonge;
         [SerializeField] private Color _fullPoisonedColor;
         [SerializeField] private float _minAlpha = 0.2f;
         [SerializeField] private float _maxPoisonedFace = 10;
+        [Header("Mouth")]
+        [SerializeField] private SpriteRenderer _spriteRendererTonge;
+        [SerializeField] private SpriteRenderer _spriteRendererMouth;
         [SerializeField] private Transform _mouth;
-        [SerializeField] private Transform _leftPupil;
-        [SerializeField] private Transform _rightPupil;
-        [SerializeField] private float _distanceToPupil = 0.2f;
         [SerializeField] private Vector3 _closeScale;
         [SerializeField] private Vector3 _chewScale;
         [SerializeField] private float _chewDuration = 2f;
         [SerializeField] private float _minMouthOpenDistance = 3f;
         [SerializeField] private float _maxMouthOpenDistance = 8f;
+        [Header("Eyes")]
+        [SerializeField] private Transform _leftPupil;
+        [SerializeField] private Transform _rightPupil;
+        [SerializeField] private float _distanceToPupil = 0.2f;
+        
         private Color _startFaceColor;
         private Color _targetFaceColor;
         private float _targetAlpha = 1f;
@@ -67,28 +71,28 @@ namespace Player
 
         private void Update()
         {
-            bool FindClosesProp(List<Transform> props, out Transform closest, out float minDistance)
+            bool FindClosesProp(List<Transform> props, out Transform closest, out float minDist)
             {
                 closest = null;
-                minDistance = float.PositiveInfinity;
+                minDist = float.PositiveInfinity;
                 foreach (Transform prop in props)
                 {
                     if (prop == null)
                         continue;
                     float sqrDistance = (prop.position - _mouth.position).sqrMagnitude;
-                    if (sqrDistance < minDistance)
+                    if (sqrDistance < minDist)
                     {
                         closest = prop;
-                        minDistance = sqrDistance;
+                        minDist = sqrDistance;
                     }
                 }
-                minDistance = Mathf.Sqrt(minDistance);
+                minDist = Mathf.Sqrt(minDist);
                 return closest != null;
             }
         
-            void LookAtFood(Transform pupil, Transform closestProp)
+            void LookAtFood(Transform pupil, Transform closestFood)
             {
-                Vector3 dir = (closestProp.position - pupil.parent.position).normalized;
+                Vector3 dir = (closestFood.position - pupil.parent.position).normalized;
                 pupil.localPosition = dir * _distanceToPupil;
             }
 
@@ -99,7 +103,7 @@ namespace Player
                 sprite.color = color;
             }
 
-            if (FindClosesProp(Prop.AllProps, out Transform closestProp, out float minDistance))
+            if (FindClosesProp(Prop.AllProps, out Transform closestProp, out _))
             {
                 LookAtFood(_leftPupil, closestProp);
                 LookAtFood(_rightPupil, closestProp);
@@ -110,7 +114,7 @@ namespace Player
                 _rightPupil.localPosition = Vector3.zero;
             }
 
-            if (FindClosesProp(EdibleProp.AllEdibleProps, out Transform closestEdible, out float minDistanceToEdible) && _chewCoroutine == null)
+            if (FindClosesProp(EdibleProp.AllEdibleProps, out _, out float minDistanceToEdible) && _chewCoroutine == null)
             {
                 float t = Mathf.Clamp01((minDistanceToEdible - _minMouthOpenDistance) /
                                         (_maxMouthOpenDistance - _minMouthOpenDistance));

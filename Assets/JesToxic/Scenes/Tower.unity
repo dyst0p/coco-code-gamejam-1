@@ -673,20 +673,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 810190953}
-  _spriteRendererMouth: {fileID: 756779557}
-  _spriteRendererTonge: {fileID: 1566481687}
   _fullPoisonedColor: {r: 0.38823533, g: 0.6, b: 0.16176471, a: 1}
   _minAlpha: 0.6
   _maxPoisonedFace: 5
+  _spriteRendererTonge: {fileID: 1566481687}
+  _spriteRendererMouth: {fileID: 756779557}
   _mouth: {fileID: 756779556}
-  _leftPupil: {fileID: 5184990157308414390}
-  _rightPupil: {fileID: 873806654}
-  _distanceToPupil: 0.09
   _closeScale: {x: 1, y: 0.1, z: 1}
   _chewScale: {x: 0.7, y: 0.2, z: 1}
   _chewDuration: 1.5
   _minMouthOpenDistance: 3
   _maxMouthOpenDistance: 7
+  _leftPupil: {fileID: 5184990157308414390}
+  _rightPupil: {fileID: 873806654}
+  _distanceToPupil: 0.09
 --- !u!50 &125874587
 Rigidbody2D:
   serializedVersion: 5
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 46adccc87ce733044bcde10eddf6c917, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16d8f78cb7af2474e9147f5f6c4cb00f, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1839,11 +1839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6b4b88b8934a648dd9cf51484d3fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
-  _poisoning: 0
-  _ovationThreshold: 4
-  _bigOvationThreshold: 8
-  IsLucky: 0
   <Score>k__BackingField: 0
 --- !u!1 &436203161
 GameObject:
@@ -1907,7 +1902,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 436203163}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 854691829}
+        m_TargetAssemblyTypeName: UI.UiController, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &436203163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2696,7 +2703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f2e9e34ba985e4bb4bf4a37fb74424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trackedObjects: []
   _minSize: 8
   _frameIndent: 2
   _speedOfChange: 20
@@ -3662,7 +3668,6 @@ MonoBehaviour:
   _gameOverPanel: {fileID: 1609322536}
   _startPanel: {fileID: 10756112}
   _gameOverText: {fileID: 362840301}
-  _playAgainButton: {fileID: 436203162}
   _onlyForStandaloneButtons:
   - {fileID: 1121437515}
   - {fileID: 198395991}
@@ -6697,7 +6702,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a74df86db6ce6a4e994cdfcd0b0d7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _propsToSpawn: 1
   _spawnPoints:
   - {fileID: 930895861}
   - {fileID: 1723966022}

@@ -1,34 +1,28 @@
-using Services;
+using JesToxic.Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Player
+namespace JesToxic.Player
 {
-    public class Spark : MonoBehaviour
+    public class HandTarget : MonoBehaviour
     {
-        [Header("Spark")]
         [SerializeField] private Side _side;
-        [SerializeField] private float _sparkSpeed = 5f;
-        [SerializeField, Range(1f, 100f)] private float _sparkInertia = 20f;
+        [FormerlySerializedAs("_sparkSpeed")] [SerializeField] private float _speed = 5f;
+        [FormerlySerializedAs("_sparkInertia")] [SerializeField, Range(1f, 100f)] private float _inertia = 20f;
         [SerializeField] private float _maxDistance = 5f;
 
         private Vector2 _targetDirection;
         private Vector2 _currentDirection;
-        private Transform _handTransform;
-
-        private void Awake()
-        {
-            _handTransform = transform.parent.GetComponentInChildren<Hand>().transform;
-        }
 
         private void OnEnable()
         {
             if (_side == Side.Left)
             {
-                InputProvider.OnMoveLeft += Move;
+                InputProvider.OnMoveLeft += HandleInput;
             }
             else
             {
-                InputProvider.OnMoveRight += Move;
+                InputProvider.OnMoveRight += HandleInput;
             }
         }
 
@@ -36,21 +30,21 @@ namespace Player
         {
             if (_side == Side.Left)
             {
-                InputProvider.OnMoveLeft -= Move;
+                InputProvider.OnMoveLeft -= HandleInput;
             }
             else
             {
-                InputProvider.OnMoveRight -= Move;
+                InputProvider.OnMoveRight -= HandleInput;
             }
         }
 
         private void FixedUpdate()
         {
             CalculateDirection();
-            MoveSpark();
+            Move();
         }
 
-        private void Move(Vector2 input)
+        private void HandleInput(Vector2 input)
         {
             _targetDirection = input;
         }
@@ -59,13 +53,13 @@ namespace Player
         {
             if (_currentDirection != _targetDirection)
             {
-                _currentDirection = Vector2.MoveTowards(_currentDirection, _targetDirection, 1f / _sparkInertia);
+                _currentDirection = Vector2.MoveTowards(_currentDirection, _targetDirection, 1f / _inertia);
             }
         }
 
-        private void MoveSpark()
+        private void Move()
         {
-            transform.Translate(_currentDirection * (_sparkSpeed * Time.fixedDeltaTime));
+            transform.Translate(_currentDirection * (_speed * Time.fixedDeltaTime));
             Vector2 offsetFromStart = transform.position - transform.parent.position;
             if (offsetFromStart.magnitude > _maxDistance)
             {

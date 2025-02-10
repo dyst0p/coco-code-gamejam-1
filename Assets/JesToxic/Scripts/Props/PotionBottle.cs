@@ -1,9 +1,8 @@
-using System;
-using FX;
-using Services;
+using JesToxic.FX;
+using JesToxic.Tools;
 using UnityEngine;
 
-namespace Props
+namespace JesToxic.Props
 {
     public class PotionBottle : Prop
     {
@@ -45,9 +44,7 @@ namespace Props
 
         private void OnCracked()
         {
-            var soundFx = FxService.Instance.GetFx(typeof(SoundFx));
-            soundFx.transform.position = transform.position;
-            soundFx.Execute(new SoundFxRequest(SoundFxType.BreakGlass));
+            this.CreateSoundFx(SoundFxType.BreakGlass);
             
             Vector2 forceUp = (_rigidbody.linearVelocity.normalized + (Vector2)transform.up) *
                           _rigidbody.linearVelocity.magnitude / 2;

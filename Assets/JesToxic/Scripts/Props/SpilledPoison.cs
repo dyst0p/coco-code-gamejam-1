@@ -1,7 +1,8 @@
-using Services;
+using JesToxic.Services;
+using JesToxic.Tools;
 using UnityEngine;
 
-namespace Props
+namespace JesToxic.Props
 {
     public class SpilledPoison : SpilledPotion
     {

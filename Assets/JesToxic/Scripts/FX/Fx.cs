@@ -1,7 +1,7 @@
-using Services;
+using JesToxic.Services;
 using UnityEngine;
 
-namespace FX
+namespace JesToxic.FX
 {
     public abstract class Fx : MonoBehaviour
     {

@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using FX;
-using Props;
-using Services;
+using JesToxic.FX;
+using JesToxic.Props;
+using JesToxic.Services;
 using UnityEngine;
 
-namespace Player
+namespace JesToxic.Player
 {
     public class Hand : MonoBehaviour
     {
@@ -34,11 +34,11 @@ namespace Player
         {
             if (HandSide == Side.Left)
             {
-                InputProvider.OnCatchLeft += Take;
+                InputProvider.OnCatchLeft += InputHandle;
             }
             else
             {
-                InputProvider.OnCatchRight += Take;
+                InputProvider.OnCatchRight += InputHandle;
             }
         }
 
@@ -46,11 +46,11 @@ namespace Player
         {
             if (HandSide == Side.Left)
             {
-                InputProvider.OnCatchLeft -= Take;
+                InputProvider.OnCatchLeft -= InputHandle;
             }
             else
             {
-                InputProvider.OnCatchRight -= Take;
+                InputProvider.OnCatchRight -= InputHandle;
             }
         }
 
@@ -85,7 +85,7 @@ namespace Player
             StartCoroutine(ColorAnimate(_hurtDuration));
         }
 
-        private void Take(bool mode)
+        private void InputHandle(bool mode)
         {
             if (mode)
             {

@@ -1,9 +1,10 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace FX
+namespace JesToxic.FX
 {
     public enum SoundFxType
     {
@@ -25,8 +26,8 @@ namespace FX
 
     public class SoundFxRequest
     {
-        public SoundFxType Type;
-        public float Volume;
+        public readonly SoundFxType Type;
+        public readonly float Volume;
 
         public SoundFxRequest(SoundFxType type, float volume = 1.0f)
         {
@@ -59,11 +60,11 @@ namespace FX
         public class SoundFxParameters
         {
             [field: SerializeField]public SoundFxType Key { get; private set; }
-            [SerializeField] private AudioClip[] Clips;
+            [FormerlySerializedAs("Clips")] [SerializeField] private AudioClip[] _clips;
 
             public AudioClip GetClip()
             {
-                return Clips[Random.Range(0, Clips.Length)];
+                return _clips[Random.Range(0, _clips.Length)];
             }
         }
     }
