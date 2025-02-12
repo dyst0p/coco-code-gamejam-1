@@ -45,6 +45,14 @@ namespace JesToxic.FX
             _source = GetComponent<AudioSource>();
         }
 
+        private void Update()
+        {
+            if (!_source.isPlaying)
+            {
+                Release();
+            }
+        }
+
         public override void Execute(object arg = null)
         {
             var settings = arg as SoundFxRequest;

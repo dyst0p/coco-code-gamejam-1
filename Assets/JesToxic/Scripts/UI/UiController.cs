@@ -109,7 +109,10 @@ namespace JesToxic.UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            EventSystem.current.SetSelectedGameObject(GetComponentInChildren<Button>(false).gameObject);
+            var button = GetComponentInChildren<Button>(false);
+            if (button == null)
+                return;
+            EventSystem.current.SetSelectedGameObject(button.gameObject);
         }
 
         private void UpdateHp(float hp)
